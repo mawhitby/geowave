@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractPersistableFactory
 {
-    public static <K, V> Map.Entry<K, V> entry(K key, V value) {
+    public Map.Entry<K, V> entry(K key, V value) {
         return new AbstractMap.SimpleEntry<>(key, value);
     }
 

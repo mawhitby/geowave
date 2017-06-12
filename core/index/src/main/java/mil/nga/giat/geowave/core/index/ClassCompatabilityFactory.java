@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2013-2017 Contributors to the Eclipse Foundation
+ * 
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Apache License,
+ * Version 2.0 which accompanies this distribution and is available at
+ * http://www.apache.org/licenses/LICENSE-2.0.txt
+ ******************************************************************************/
 package mil.nga.giat.geowave.core.index;
 
 import java.util.Collections;
@@ -11,56 +21,8 @@ public class ClassCompatabilityFactory
 {
 	private final static Logger LOGGER = LoggerFactory.getLogger(ClassCompatabilityFactory.class);
 
-	private static final String legacyPackage = "mil.nga.giat.geowave";
-	private static final String futurePackage = "org.locationtech.geowave";
-
 	private static Map<String, byte[]> unregisteredClassNames;
 
-	/**
-	 * Given a class name and the desired/expected type, return a compatible
-	 * class name between the two class names
-	 *
-	 * @param className
-	 * @param expectedTypeClassName
-	 * @return
-	 */
-	public static String lookupCompatibleClassName(
-			final String className,
-			final String expectedTypeClassName ) {
-		if (className.equals(expectedTypeClassName)) {
-			return className;
-		}
-
-		Class<?> originalClass = null, expectedClass = null;
-		try {
-			originalClass = Class.forName(className);
-			expectedClass = Class.forName(expectedTypeClassName);
-		}
-		catch (Exception ex) {
-			LOGGER.error(
-					"ClassNotFoundException Error: " + ex.getLocalizedMessage(),
-					ex);
-		}
-		if (originalClass != null && expectedClass != null && expectedClass.isAssignableFrom(originalClass)) {
-			return className;
-		}
-
-		String compatibleClassName = className;
-		if (compatibleClassName.startsWith(legacyPackage) && expectedTypeClassName.startsWith(futurePackage)) {
-			// if migrating from legacy to future
-			compatibleClassName = compatibleClassName.replace(
-					legacyPackage,
-					futurePackage);
-		}
-		else if (compatibleClassName.startsWith(futurePackage) && expectedTypeClassName.startsWith(legacyPackage)) {
-			// if converting from future back to legacy - if there was a
-			// use-case for this scenario
-			compatibleClassName = compatibleClassName.replace(
-					futurePackage,
-					legacyPackage);
-		}
-		return compatibleClassName;
-	}
 
 	/**
 	 * Given a class name, return the binary representation of a class

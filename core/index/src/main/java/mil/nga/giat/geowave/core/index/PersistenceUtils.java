@@ -104,6 +104,7 @@ public class PersistenceUtils
 			final byte[] bytes,
 			final Class<T> expectedType ) {
 		final ByteBuffer buf = ByteBuffer.wrap(bytes);
+		buf.getShort();
 		final int classIdentifierLength = buf.getInt();
 		final byte[] classIdentifierBinary = new byte[classIdentifierLength];
 		final byte[] persistableBinary = new byte[bytes.length - classIdentifierLength - 4];

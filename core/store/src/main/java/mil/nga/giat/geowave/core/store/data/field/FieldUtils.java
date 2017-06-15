@@ -18,7 +18,7 @@ import java.util.Map.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import mil.nga.giat.geowave.core.store.filter.GenericTypeResolver;
+import mil.nga.giat.geowave.core.index.GenericTypeResolver;
 import mil.nga.giat.geowave.core.store.spi.SPIServiceRegistry;
 
 /**

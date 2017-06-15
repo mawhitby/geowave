@@ -27,7 +27,7 @@ public class UnboundedDimensionDefinition extends
 
 	protected BinningStrategy binningStrategy;
 
-	protected UnboundedDimensionDefinition() {
+	public UnboundedDimensionDefinition() {
 		super();
 	}
 
@@ -119,10 +119,5 @@ public class UnboundedDimensionDefinition extends
 				BinningStrategy.class);
 		min = binningStrategy.getBinMin();
 		max = binningStrategy.getBinMax();
-	}
-
-	@Override
-	public UnboundedDimensionDefinition getPersistable() {
-		return new UnboundedDimensionDefinition();
 	}
 }

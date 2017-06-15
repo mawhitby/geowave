@@ -28,7 +28,7 @@ public class DateRangeFilter implements
 	protected boolean inclusiveLow;
 	protected boolean inclusiveHigh;
 
-	protected DateRangeFilter() {
+	public DateRangeFilter() {
 		super();
 	}
 

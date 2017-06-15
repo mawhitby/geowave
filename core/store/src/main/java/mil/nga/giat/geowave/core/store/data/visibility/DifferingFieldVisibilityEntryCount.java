@@ -36,7 +36,7 @@ public class DifferingFieldVisibilityEntryCount<T> extends
 
 	private long entriesWithDifferingFieldVisibilities = 0;
 
-	protected DifferingFieldVisibilityEntryCount() {
+	public DifferingFieldVisibilityEntryCount() {
 		super();
 	}
 

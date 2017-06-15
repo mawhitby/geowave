@@ -583,7 +583,7 @@ public class CompoundIndexStrategy implements
 	 * 'update' operation.
 	 *
 	 */
-	private static class CompoundIndexMetaDataWrapper implements
+	protected static class CompoundIndexMetaDataWrapper implements
 			IndexMetaData
 	{
 
@@ -678,11 +678,6 @@ public class CompoundIndexStrategy implements
 					index);
 			return jo;
 		}
-
-		@Override
-		public CompoundIndexMetaDataWrapper getPersistable() {
-			return new CompoundIndexMetaDataWrapper();
-		}
 	}
 
 	@Override
@@ -717,10 +712,5 @@ public class CompoundIndexStrategy implements
 			}
 		}
 		return retVal;
-	}
-
-	@Override
-	public CompoundIndexStrategy getPersistable() {
-		return new CompoundIndexStrategy();
 	}
 }

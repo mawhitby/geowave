@@ -35,7 +35,7 @@ public class IndexMetaDataSet<T> extends
 	public static final ByteArrayId STATS_TYPE = new ByteArrayId(
 			"INDEX_METADATA");
 
-	protected IndexMetaDataSet() {}
+	public IndexMetaDataSet() {}
 
 	private IndexMetaDataSet(
 			final ByteArrayId adapterId,

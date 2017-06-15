@@ -46,7 +46,7 @@ public class SingleTierSubStrategy implements
 	private NumericDimensionDefinition[] baseDefinitions;
 	public byte tier;
 
-	protected SingleTierSubStrategy() {}
+	public SingleTierSubStrategy() {}
 
 	public SingleTierSubStrategy(
 			final SpaceFillingCurve sfc,
@@ -277,10 +277,5 @@ public class SingleTierSubStrategy implements
 					baseDefinitions.length,
 					tier)
 		};
-	}
-
-	@Override
-	public SingleTierSubStrategy getPersistable() {
-		return new SingleTierSubStrategy();
 	}
 }

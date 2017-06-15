@@ -67,7 +67,7 @@ public class TieredSFCIndexStrategy implements
 	private long maxEstimatedDuplicateIdsPerDimension;
 	private final Map<Integer, BigInteger> maxEstimatedDuplicatesPerDimensionalExtent = new HashMap<>();
 
-	protected TieredSFCIndexStrategy() {}
+	public TieredSFCIndexStrategy() {}
 
 	/**
 	 * Constructor used to create a Tiered Index Strategy.
@@ -709,15 +709,5 @@ public class TieredSFCIndexStrategy implements
 
 			return jo;
 		}
-
-		@Override
-		public TierIndexMetaData getPersistable() {
-			return new TierIndexMetaData();
-		}
-	}
-
-	@Override
-	public TieredSFCIndexStrategy getPersistable() {
-		return new TieredSFCIndexStrategy();
 	}
 }

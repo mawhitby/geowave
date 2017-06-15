@@ -608,10 +608,4 @@ public class XZOrderSFC implements
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public XZOrderSFC getPersistable() {
-		return new XZOrderSFC();
-	}
-
 }

@@ -1,86 +1,106 @@
 package mil.nga.giat.geowave.core.index;
 
-import java.lang.reflect.Constructor;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.ServiceLoader;
+import java.util.function.Supplier;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import mil.nga.giat.geowave.core.index.PersistableRegistrySpi.PersistableIdAndConstructor;
+
 public class PersistableFactory
 {
-	private final static Logger LOGGER = LoggerFactory.getLogger(PersistableFactory.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(
+			PersistableFactory.class);
 
-	private static Map<String, Object> factoryMap;
+	private final Map<Class<Persistable>, Short> classRegistry;
 
-	@SuppressWarnings("unchecked")
-	public static <T> T getPersistable(
-			final String className,
-			Class<T> expectedType ) {
+	private final Map<Short, Supplier<Persistable>> constructorRegistry;
+	private static PersistableFactory singletonInstance = null;
 
-		Object factoryClassInst = getFactoryMap().getOrDefault(
-				className,
-				null);
-		if (factoryClassInst == null) {
-			Class<?> factoryType = null;
-
-			try {
-				factoryType = Class.forName(className);
-			}
-			catch (final ClassNotFoundException e) {
-				LOGGER.warn(
-						"error creating class: could not find class ",
-						e);
-			}
-
-			if (factoryType != null) {
-				try {
-					// use the no arg constructor and make sure its accessible
-
-					// HP Fortify "Access Specifier Manipulation"
-					// This method is being modified by trusted code,
-					// in a way that is not influenced by user input
-					final Constructor<?> noArgConstructor = factoryType.getDeclaredConstructor();
-					noArgConstructor.setAccessible(true);
-					factoryClassInst = noArgConstructor.newInstance();
-
-					getFactoryMap().put(
-							className,
-							factoryClassInst);
-				}
-				catch (final Exception e) {
-					LOGGER.warn(
-							"error creating class: could not create class ",
-							e);
+	public static synchronized PersistableFactory getInstance() {
+		if (singletonInstance == null) {
+			final PersistableFactory internalFactory = new PersistableFactory();
+			final Iterator<PersistableRegistrySpi> persistableRegistries = ServiceLoader.load(
+					PersistableRegistrySpi.class).iterator();
+			while (persistableRegistries.hasNext()) {
+				final PersistableRegistrySpi persistableRegistry = persistableRegistries.next();
+				if (persistableRegistry != null) {
+					internalFactory.addRegistry(
+							persistableRegistry);
 				}
 			}
+			singletonInstance = internalFactory;
 		}
+		return singletonInstance;
+	}
 
-		if (factoryClassInst != null) {
-			if (!expectedType.isAssignableFrom(factoryClassInst.getClass())) {
-				LOGGER.warn("error creating class, does not implement expected type");
-			}
-			else {
-				if (factoryClassInst instanceof Persistable) {
-					Persistable persistable = ((Persistable) factoryClassInst).getPersistable();
-					if (persistable != null) {
-						return (T) persistable;
-					}
+	private PersistableFactory() {
+		classRegistry = new HashMap<>();
+		constructorRegistry = new HashMap<>();
+	}
+
+	protected void addRegistry(
+			final PersistableRegistrySpi registry ) {
+		final PersistableIdAndConstructor[] persistables = registry.getSupportedPersistables();
+		for (final PersistableIdAndConstructor p : persistables) {
+			addPersistableType(
+					p.getPersistableId(),
+					p.getPersistableConstructor());
+		}
+	}
+
+	protected void addPersistableType(
+			final short persistableId,
+			final Supplier<Persistable> constructor ) {
+		final Class persistableClass = GenericTypeResolver.resolveTypeArgument(
+				constructor.getClass(),
+				Supplier.class);
+		if (classRegistry.containsKey(
+				persistableClass)) {
+			LOGGER.error(
+					"'" + persistableClass.getCanonicalName() + "' already registered with id '" + classRegistry.get(
+							persistableClass) + "'.  Cannot register '" + persistableClass + "' with id '" + persistableId + "'");
+			return;
+		}
+		if (constructorRegistry.containsKey(
+				persistableId)) {
+			String currentClass = "unknown";
+
+			for (final Entry<Class<Persistable>, Short> e : classRegistry.entrySet()) {
+				if (persistableId == e.getValue().shortValue()) {
+					currentClass = e.getKey().getCanonicalName();
+					break;
 				}
-				return (T) factoryClassInst;
 			}
+			LOGGER.error(
+					"'" + persistableId + "' already registered for class '" + (currentClass) + "'.  Cannot register '" + persistableClass + "' with id '" + persistableId + "'");
+			return;
+		}
+		classRegistry.put(
+				persistableClass,
+				persistableId);
+		constructorRegistry.put(
+				persistableId,
+				constructor);
+	}
+
+	public Persistable newInstance(
+			final short id ) {
+		final Supplier<Persistable> constructor = constructorRegistry.get(
+				id);
+		if (constructor != null) {
+			return constructor.get();
 		}
 		return null;
-
 	}
 
-	/**
-	 * @return the factoryMap
-	 */
-	public static Map<String, Object> getFactoryMap() {
-		if (factoryMap == null) {
-			factoryMap = new HashMap<String, Object>();
-		}
-		return factoryMap;
+	public Map<Class<Persistable>, Short> getClassIdMapping() {
+		return classRegistry;
 	}
+
 }

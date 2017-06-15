@@ -119,7 +119,7 @@ public class HilbertSFC implements
 	protected HilbertSFCOperations getIdOperations;
 	protected HilbertSFCOperations decomposeQueryOperations;
 
-	protected HilbertSFC() {}
+	public HilbertSFC() {}
 
 	/***
 	 * Use the SFCFactory.createSpaceFillingCurve method - don't call this
@@ -394,10 +394,5 @@ public class HilbertSFC implements
 	@Override
 	public double[] getInsertionIdRangePerDimension() {
 		return getIdOperations.getInsertionIdRangePerDimension(dimensionDefinitions);
-	}
-
-	@Override
-	public HilbertSFC getPersistable() {
-		return new HilbertSFC();
 	}
 }

@@ -37,7 +37,7 @@ public class ZOrderSFC implements
 	private int cardinalityPerDimension;
 	private double binsPerDimension;
 
-	protected ZOrderSFC() {
+	public ZOrderSFC() {
 		super();
 	}
 
@@ -249,10 +249,5 @@ public class ZOrderSFC implements
 			(long) (dimensionDefs[d].normalize(minValue) * binsPerDimension),
 			(long) (dimensionDefs[d].normalize(maxValue) * binsPerDimension)
 		};
-	}
-
-	@Override
-	public ZOrderSFC getPersistable() {
-		return new ZOrderSFC();
 	}
 }

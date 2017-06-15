@@ -105,15 +105,5 @@ public class MultiDimensionalCoordinateRangesArray implements
 				coordinateArrays[i].fromBinary(rangesBinary);
 			}
 		}
-
-		@Override
-		public ArrayOfArrays getPersistable() {
-			return new ArrayOfArrays();
-		}
-	}
-
-	@Override
-	public MultiDimensionalCoordinateRangesArray getPersistable() {
-		return new MultiDimensionalCoordinateRangesArray();
 	}
 }

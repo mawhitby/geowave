@@ -168,9 +168,4 @@ public class BasicNumericDataset implements
 					NumericData.class);
 		}
 	}
-
-	@Override
-	public BasicNumericDataset getPersistable() {
-		return new BasicNumericDataset();
-	}
 }

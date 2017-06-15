@@ -105,10 +105,4 @@ public class CoordinateRange implements
 			binId = null;
 		}
 	}
-
-	@Override
-	public CoordinateRange getPersistable() {
-		return new CoordinateRange();
-	}
-
 }

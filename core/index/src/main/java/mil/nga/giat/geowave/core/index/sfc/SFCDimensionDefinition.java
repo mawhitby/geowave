@@ -29,7 +29,7 @@ public class SFCDimensionDefinition implements
 	private int bitsOfPrecision;
 	private NumericDimensionDefinition dimensionDefinition;
 
-	protected SFCDimensionDefinition() {}
+	public SFCDimensionDefinition() {}
 
 	/**
 	 * @param dimensionDefinition
@@ -163,10 +163,5 @@ public class SFCDimensionDefinition implements
 			return false;
 		}
 		return true;
-	}
-
-	@Override
-	public SFCDimensionDefinition getPersistable() {
-		return new SFCDimensionDefinition();
 	}
 }

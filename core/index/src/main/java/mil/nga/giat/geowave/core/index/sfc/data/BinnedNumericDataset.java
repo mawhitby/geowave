@@ -29,7 +29,7 @@ public class BinnedNumericDataset implements
 	private MultiDimensionalNumericData indexRanges;
 	private boolean fullExtent;
 
-	protected BinnedNumericDataset() {}
+	public BinnedNumericDataset() {}
 
 	/**
 	 *
@@ -209,10 +209,5 @@ public class BinnedNumericDataset implements
 		indexRanges = PersistenceUtils.fromBinary(
 				indexRangesBinary,
 				MultiDimensionalNumericData.class);
-	}
-
-	@Override
-	public BinnedNumericDataset getPersistable() {
-		return new BinnedNumericDataset();
 	}
 }

@@ -180,7 +180,7 @@ public class BasicQueryFilter implements
 	protected MultiDimensionalNumericData constraints;
 	protected BasicQueryCompareOperation compareOp = BasicQueryCompareOperation.INTERSECTS;
 
-	protected BasicQueryFilter() {}
+	public BasicQueryFilter() {}
 
 	public BasicQueryFilter(
 			final MultiDimensionalNumericData constraints,

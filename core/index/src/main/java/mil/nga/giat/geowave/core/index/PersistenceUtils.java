@@ -125,7 +125,7 @@ public class PersistenceUtils
 	public static <T> T classFactory(
 			final String className,
 			final Class<T> expectedType ) {
-		T persistable = PersistableFactory.getPersistable(
+		T persistable = PersistableFactoryOld.getPersistable(
 				className,
 				expectedType);
 		if (persistable != null) {

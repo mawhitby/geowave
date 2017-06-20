@@ -10,7 +10,7 @@
  ******************************************************************************/
 package mil.nga.giat.geowave.core.store.query.aggregate;
 
-import mil.nga.giat.geowave.core.index.PersistenceUtils;
+import mil.nga.giat.geowave.core.index.persist.PersistenceUtils;
 import mil.nga.giat.geowave.core.store.adapter.statistics.DataStatistics;
 
 public class DataStatisticsAggregation<T> implements
@@ -49,9 +49,8 @@ public class DataStatisticsAggregation<T> implements
 
 	@Override
 	public void clearResult() {
-		this.statisticsResult = PersistenceUtils.fromBinary(
-				defaultResultBinary,
-				DataStatistics.class);
+		this.statisticsResult = (DataStatistics<T>) PersistenceUtils.fromBinary(
+				defaultResultBinary);
 	}
 
 	@Override

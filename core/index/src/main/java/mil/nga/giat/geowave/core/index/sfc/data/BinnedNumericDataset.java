@@ -13,9 +13,9 @@ package mil.nga.giat.geowave.core.index.sfc.data;
 import java.nio.ByteBuffer;
 
 import mil.nga.giat.geowave.core.index.ByteArrayUtils;
-import mil.nga.giat.geowave.core.index.PersistenceUtils;
 import mil.nga.giat.geowave.core.index.dimension.NumericDimensionDefinition;
 import mil.nga.giat.geowave.core.index.dimension.bin.BinRange;
+import mil.nga.giat.geowave.core.index.persist.PersistenceUtils;
 
 /**
  * The Binned Numeric Dataset class creates an object that associates a
@@ -206,8 +206,7 @@ public class BinnedNumericDataset implements
 
 		final byte[] indexRangesBinary = new byte[bytes.length - 5 - binId.length];
 		buf.get(indexRangesBinary);
-		indexRanges = PersistenceUtils.fromBinary(
-				indexRangesBinary,
-				MultiDimensionalNumericData.class);
+		indexRanges = (MultiDimensionalNumericData) PersistenceUtils.fromBinary(
+				indexRangesBinary);
 	}
 }

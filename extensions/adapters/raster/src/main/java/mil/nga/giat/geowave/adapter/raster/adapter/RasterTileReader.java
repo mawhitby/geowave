@@ -10,7 +10,7 @@
  ******************************************************************************/
 package mil.nga.giat.geowave.adapter.raster.adapter;
 
-import mil.nga.giat.geowave.core.index.PersistenceUtils;
+import mil.nga.giat.geowave.core.index.persist.PersistenceUtils;
 import mil.nga.giat.geowave.core.store.data.field.FieldReader;
 
 public class RasterTileReader implements

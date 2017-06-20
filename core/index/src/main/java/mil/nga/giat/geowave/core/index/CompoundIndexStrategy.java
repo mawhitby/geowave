@@ -23,6 +23,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
 import mil.nga.giat.geowave.core.index.dimension.NumericDimensionDefinition;
+import mil.nga.giat.geowave.core.index.persist.PersistenceUtils;
 import mil.nga.giat.geowave.core.index.sfc.data.BasicNumericDataset;
 import mil.nga.giat.geowave.core.index.sfc.data.MultiDimensionalNumericData;
 import mil.nga.giat.geowave.core.index.sfc.data.NumericData;
@@ -96,12 +97,10 @@ public class CompoundIndexStrategy implements
 		buf.get(delegateBinary1);
 		final byte[] delegateBinary2 = new byte[bytes.length - delegateBinary1Length - 4];
 		buf.get(delegateBinary2);
-		subStrategy1 = PersistenceUtils.fromBinary(
-				delegateBinary1,
-				NumericIndexStrategy.class);
-		subStrategy2 = PersistenceUtils.fromBinary(
-				delegateBinary2,
-				NumericIndexStrategy.class);
+		subStrategy1 = (NumericIndexStrategy) PersistenceUtils.fromBinary(
+				delegateBinary1);
+		subStrategy2 = (NumericIndexStrategy) PersistenceUtils.fromBinary(
+				delegateBinary2);
 		init();
 		defaultNumberOfRanges = (int) Math.ceil(Math.pow(
 				2,
@@ -615,9 +614,8 @@ public class CompoundIndexStrategy implements
 			final ByteBuffer buf = ByteBuffer.wrap(bytes);
 			final byte[] metaBytes = new byte[bytes.length - 4];
 			buf.get(metaBytes);
-			metaData = PersistenceUtils.fromBinary(
-					metaBytes,
-					IndexMetaData.class);
+			metaData = (IndexMetaData) PersistenceUtils.fromBinary(
+					metaBytes);
 			index = buf.getInt();
 		}
 

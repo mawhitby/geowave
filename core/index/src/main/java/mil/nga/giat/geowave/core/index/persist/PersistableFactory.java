@@ -1,4 +1,4 @@
-package mil.nga.giat.geowave.core.index;
+package mil.nga.giat.geowave.core.index.persist;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import mil.nga.giat.geowave.core.index.PersistableRegistrySpi.PersistableIdAndConstructor;
+import mil.nga.giat.geowave.core.index.persist.PersistableRegistrySpi.PersistableIdAndConstructor;
 
 public class PersistableFactory
 {
@@ -57,9 +57,7 @@ public class PersistableFactory
 	protected void addPersistableType(
 			final short persistableId,
 			final Supplier<Persistable> constructor ) {
-		final Class persistableClass = GenericTypeResolver.resolveTypeArgument(
-				constructor.getClass(),
-				Supplier.class);
+		final Class persistableClass = constructor.get().getClass();
 		if (classRegistry.containsKey(
 				persistableClass)) {
 			LOGGER.error(

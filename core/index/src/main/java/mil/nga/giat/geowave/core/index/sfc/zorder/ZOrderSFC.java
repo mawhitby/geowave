@@ -18,7 +18,7 @@ import java.util.List;
 
 import mil.nga.giat.geowave.core.index.ByteArrayId;
 import mil.nga.giat.geowave.core.index.ByteArrayRange;
-import mil.nga.giat.geowave.core.index.PersistenceUtils;
+import mil.nga.giat.geowave.core.index.persist.PersistenceUtils;
 import mil.nga.giat.geowave.core.index.sfc.RangeDecomposition;
 import mil.nga.giat.geowave.core.index.sfc.SFCDimensionDefinition;
 import mil.nga.giat.geowave.core.index.sfc.SpaceFillingCurve;
@@ -201,9 +201,8 @@ public class ZOrderSFC implements
 		for (int i = 0; i < numDimensions; i++) {
 			final byte[] dim = new byte[buf.getInt()];
 			buf.get(dim);
-			dimensionDefs[i] = PersistenceUtils.fromBinary(
-					dim,
-					SFCDimensionDefinition.class);
+			dimensionDefs[i] = (SFCDimensionDefinition) PersistenceUtils.fromBinary(
+					dim);
 		}
 		init(dimensionDefs);
 	}

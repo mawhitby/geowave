@@ -15,8 +15,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import mil.nga.giat.geowave.core.index.GenericTypeResolver;
 import mil.nga.giat.geowave.core.store.data.field.ArrayWriter.Encoding;
+import mil.nga.giat.geowave.core.store.util.GenericTypeResolver;
 
 /**
  * This class contains the basic array reader field types

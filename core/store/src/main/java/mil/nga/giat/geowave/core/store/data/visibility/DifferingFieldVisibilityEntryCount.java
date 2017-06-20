@@ -182,9 +182,4 @@ public class DifferingFieldVisibilityEntryCount<T> extends
 				entriesWithDifferingFieldVisibilities);
 		return jo;
 	}
-
-	@Override
-	public DifferingFieldVisibilityEntryCount<T> getPersistable() {
-		return new DifferingFieldVisibilityEntryCount<T>();
-	}
 }

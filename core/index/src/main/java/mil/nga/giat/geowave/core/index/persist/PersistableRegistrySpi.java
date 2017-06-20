@@ -1,4 +1,4 @@
-package mil.nga.giat.geowave.core.index;
+package mil.nga.giat.geowave.core.index.persist;
 
 import java.util.function.Supplier;
 

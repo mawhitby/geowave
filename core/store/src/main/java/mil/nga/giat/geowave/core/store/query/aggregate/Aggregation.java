@@ -11,7 +11,7 @@
 package mil.nga.giat.geowave.core.store.query.aggregate;
 
 import mil.nga.giat.geowave.core.index.Mergeable;
-import mil.nga.giat.geowave.core.index.Persistable;
+import mil.nga.giat.geowave.core.index.persist.Persistable;
 
 public interface Aggregation<P extends Persistable, R extends Mergeable, T>
 {

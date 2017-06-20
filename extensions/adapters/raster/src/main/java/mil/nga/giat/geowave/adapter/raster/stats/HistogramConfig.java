@@ -13,10 +13,10 @@ package mil.nga.giat.geowave.adapter.raster.stats;
 import java.awt.image.SampleModel;
 import java.nio.ByteBuffer;
 
-import mil.nga.giat.geowave.core.index.Persistable;
-
 import org.geotools.coverage.TypeMap;
 import org.geotools.util.NumberRange;
+
+import mil.nga.giat.geowave.core.index.persist.Persistable;
 
 public class HistogramConfig implements
 		Persistable

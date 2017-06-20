@@ -18,8 +18,8 @@ import java.util.Map.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import mil.nga.giat.geowave.core.index.GenericTypeResolver;
 import mil.nga.giat.geowave.core.store.spi.SPIServiceRegistry;
+import mil.nga.giat.geowave.core.store.util.GenericTypeResolver;
 
 /**
  * This class has a set of convenience methods to determine the appropriate

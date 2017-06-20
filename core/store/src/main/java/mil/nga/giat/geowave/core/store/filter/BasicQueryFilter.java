@@ -18,7 +18,7 @@ import java.util.Map;
 
 import mil.nga.giat.geowave.core.index.ByteArrayId;
 import mil.nga.giat.geowave.core.index.FloatCompareUtils;
-import mil.nga.giat.geowave.core.index.PersistenceUtils;
+import mil.nga.giat.geowave.core.index.persist.PersistenceUtils;
 import mil.nga.giat.geowave.core.index.sfc.data.BasicNumericDataset;
 import mil.nga.giat.geowave.core.index.sfc.data.BinnedNumericDataset;
 import mil.nga.giat.geowave.core.index.sfc.data.MultiDimensionalNumericData;
@@ -314,19 +314,13 @@ public class BasicQueryFilter implements
 					buf.getDouble(),
 					buf.getDouble());
 			buf.get(field);
-			dimensionFields[d] = PersistenceUtils.fromBinary(
-					field,
-					NumericDimensionField.class);
+			dimensionFields[d] = (NumericDimensionField<?>) PersistenceUtils.fromBinary(
+					field);
 		}
 		constraints = new BasicNumericDataset(
 				data);
 		init(
 				constraints,
 				dimensionFields);
-	}
-
-	@Override
-	public BasicQueryFilter getPersistable() {
-		return new BasicQueryFilter();
 	}
 }

@@ -12,6 +12,8 @@ package mil.nga.giat.geowave.core.index;
 
 import java.nio.ByteBuffer;
 
+import mil.nga.giat.geowave.core.index.persist.Persistable;
+
 public class MultiDimensionalCoordinateRangesArray implements
 		Persistable
 {

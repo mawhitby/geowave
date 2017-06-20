@@ -4,6 +4,7 @@ import mil.nga.giat.geowave.core.index.CompoundIndexStrategy.CompoundIndexMetaDa
 import mil.nga.giat.geowave.core.index.MultiDimensionalCoordinateRangesArray.ArrayOfArrays;
 import mil.nga.giat.geowave.core.index.dimension.BasicDimensionDefinition;
 import mil.nga.giat.geowave.core.index.dimension.UnboundedDimensionDefinition;
+import mil.nga.giat.geowave.core.index.persist.PersistableRegistrySpi;
 import mil.nga.giat.geowave.core.index.sfc.SFCDimensionDefinition;
 import mil.nga.giat.geowave.core.index.sfc.data.BasicNumericDataset;
 import mil.nga.giat.geowave.core.index.sfc.data.BinnedNumericDataset;
@@ -13,7 +14,6 @@ import mil.nga.giat.geowave.core.index.sfc.hilbert.HilbertSFC;
 import mil.nga.giat.geowave.core.index.sfc.tiered.SingleTierSubStrategy;
 import mil.nga.giat.geowave.core.index.sfc.tiered.TieredSFCIndexStrategy;
 import mil.nga.giat.geowave.core.index.sfc.tiered.TieredSFCIndexStrategy.TierIndexMetaData;
-import mil.nga.giat.geowave.core.index.sfc.xz.XZHierarchicalIndexFactory;
 import mil.nga.giat.geowave.core.index.sfc.xz.XZHierarchicalIndexStrategy;
 import mil.nga.giat.geowave.core.index.sfc.xz.XZOrderSFC;
 import mil.nga.giat.geowave.core.index.sfc.zorder.ZOrderSFC;
@@ -23,7 +23,7 @@ import mil.nga.giat.geowave.core.index.simple.SimpleIntegerIndexStrategy;
 import mil.nga.giat.geowave.core.index.simple.SimpleLongIndexStrategy;
 import mil.nga.giat.geowave.core.index.simple.SimpleShortIndexStrategy;
 
-public class IndexPersistableFactory implements 
+public class IndexPersistableRegistry implements
 		PersistableRegistrySpi
 {
 
@@ -108,6 +108,9 @@ public class IndexPersistableFactory implements
 			new PersistableIdAndConstructor(
 					(short) 124,
 					SimpleShortIndexStrategy::new),
+			new PersistableIdAndConstructor(
+					(short) 125,
+					TierIndexMetaData::new),
 		};
 	}
 

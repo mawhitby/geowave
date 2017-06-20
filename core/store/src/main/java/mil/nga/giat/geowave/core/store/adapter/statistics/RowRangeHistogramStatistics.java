@@ -267,9 +267,4 @@ public class RowRangeHistogramStatistics<T> extends
 
 		return jo;
 	}
-
-	@Override
-	public RowRangeHistogramStatistics<T> getPersistable() {
-		return new RowRangeHistogramStatistics<T>();
-	}
 }

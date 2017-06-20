@@ -13,7 +13,7 @@ package mil.nga.giat.geowave.core.ingest.hdfs.mapreduce;
 import java.io.IOException;
 
 import mil.nga.giat.geowave.core.index.ByteArrayUtils;
-import mil.nga.giat.geowave.core.index.PersistenceUtils;
+import mil.nga.giat.geowave.core.index.persist.PersistenceUtils;
 import mil.nga.giat.geowave.core.store.CloseableIterator;
 
 import org.apache.avro.mapred.AvroKey;

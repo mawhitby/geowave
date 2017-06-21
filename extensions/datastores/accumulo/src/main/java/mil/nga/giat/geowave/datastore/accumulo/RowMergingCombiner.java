@@ -59,9 +59,7 @@ public class RowMergingCombiner extends
 				env);
 		final String rowTransformStr = options.get(RowMergingAdapterOptionProvider.ROW_TRANSFORM_KEY);
 		final byte[] rowTransformBytes = ByteArrayUtils.byteArrayFromString(rowTransformStr);
-		rowTransform = PersistenceUtils.fromBinary(
-				rowTransformBytes,
-				RowTransform.class);
+		rowTransform = (RowTransform<Mergeable>) PersistenceUtils.fromBinary(rowTransformBytes);
 		rowTransform.initOptions(options);
 	}
 

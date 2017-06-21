@@ -41,8 +41,7 @@ abstract public class ArrayField<T extends CommonIndexValue> implements
 	@Override
 	public void fromBinary(
 			final byte[] bytes ) {
-		elementField = (NumericDimensionField<T>) PersistenceUtils.fromBinary(
-				bytes);
+		elementField = (NumericDimensionField<T>) PersistenceUtils.fromBinary(bytes);
 	}
 
 	@Override

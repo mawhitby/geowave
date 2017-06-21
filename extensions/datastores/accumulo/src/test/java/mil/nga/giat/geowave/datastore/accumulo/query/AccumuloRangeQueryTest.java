@@ -324,7 +324,7 @@ public class AccumuloRangeQueryTest
 		return new TestGeometryAdapter();
 	}
 
-	protected static class TestGeometryAdapter extends
+	public static class TestGeometryAdapter extends
 			AbstractDataAdapter<TestGeometry> implements
 			StatisticsProvider<TestGeometry>
 	{
@@ -368,11 +368,6 @@ public class AccumuloRangeQueryTest
 			public void fromBinary(
 					final byte[] bytes ) {
 
-			}
-
-			@Override
-			public Persistable getPersistable() {
-				return null;
 			}
 		};
 		private static final NativeFieldHandler<TestGeometry, Object> ID_FIELD_HANDLER = new NativeFieldHandler<AccumuloRangeQueryTest.TestGeometry, Object>() {
@@ -544,11 +539,6 @@ public class AccumuloRangeQueryTest
 					return null;
 				}
 			};
-		}
-
-		@Override
-		public TestGeometryAdapter getPersistable() {
-			return new TestGeometryAdapter();
 		}
 	}
 }

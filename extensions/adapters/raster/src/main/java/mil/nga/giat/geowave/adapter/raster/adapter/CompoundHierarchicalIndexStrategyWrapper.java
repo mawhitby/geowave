@@ -51,7 +51,7 @@ public class CompoundHierarchicalIndexStrategyWrapper implements
 		this.firstHierarchicalStrategy = firstHierarchicalStrategy;
 	}
 
-	protected CompoundHierarchicalIndexStrategyWrapper() {
+	public CompoundHierarchicalIndexStrategyWrapper() {
 		super();
 	}
 
@@ -110,9 +110,7 @@ public class CompoundHierarchicalIndexStrategyWrapper implements
 	@Override
 	public void fromBinary(
 			final byte[] bytes ) {
-		final CompoundIndexStrategy rootStrategy = PersistenceUtils.fromBinary(
-				bytes,
-				CompoundIndexStrategy.class);
+		final CompoundIndexStrategy rootStrategy = (CompoundIndexStrategy) PersistenceUtils.fromBinary(bytes);
 		parentStrategies = new ArrayList<CompoundIndexStrategy>();
 		// discover hierarchy
 		firstHierarchicalStrategy = findHierarchicalStrategy(
@@ -269,10 +267,5 @@ public class CompoundHierarchicalIndexStrategyWrapper implements
 				0).getCoordinateRangesPerDimension(
 				dataRange,
 				hints);
-	}
-
-	@Override
-	public CompoundHierarchicalIndexStrategyWrapper getPersistable() {
-		return new CompoundHierarchicalIndexStrategyWrapper();
 	}
 }

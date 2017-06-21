@@ -14,8 +14,7 @@ import mil.nga.giat.geowave.core.index.persist.PersistableRegistrySpi.Persistabl
 
 public class PersistableFactory
 {
-	private final static Logger LOGGER = LoggerFactory.getLogger(
-			PersistableFactory.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(PersistableFactory.class);
 
 	private final Map<Class<Persistable>, Short> classRegistry;
 
@@ -30,8 +29,7 @@ public class PersistableFactory
 			while (persistableRegistries.hasNext()) {
 				final PersistableRegistrySpi persistableRegistry = persistableRegistries.next();
 				if (persistableRegistry != null) {
-					internalFactory.addRegistry(
-							persistableRegistry);
+					internalFactory.addRegistry(persistableRegistry);
 				}
 			}
 			singletonInstance = internalFactory;
@@ -58,15 +56,13 @@ public class PersistableFactory
 			final short persistableId,
 			final Supplier<Persistable> constructor ) {
 		final Class persistableClass = constructor.get().getClass();
-		if (classRegistry.containsKey(
-				persistableClass)) {
-			LOGGER.error(
-					"'" + persistableClass.getCanonicalName() + "' already registered with id '" + classRegistry.get(
-							persistableClass) + "'.  Cannot register '" + persistableClass + "' with id '" + persistableId + "'");
+		if (classRegistry.containsKey(persistableClass)) {
+			LOGGER.error("'" + persistableClass.getCanonicalName() + "' already registered with id '"
+					+ classRegistry.get(persistableClass) + "'.  Cannot register '" + persistableClass + "' with id '"
+					+ persistableId + "'");
 			return;
 		}
-		if (constructorRegistry.containsKey(
-				persistableId)) {
+		if (constructorRegistry.containsKey(persistableId)) {
 			String currentClass = "unknown";
 
 			for (final Entry<Class<Persistable>, Short> e : classRegistry.entrySet()) {
@@ -75,8 +71,8 @@ public class PersistableFactory
 					break;
 				}
 			}
-			LOGGER.error(
-					"'" + persistableId + "' already registered for class '" + (currentClass) + "'.  Cannot register '" + persistableClass + "' with id '" + persistableId + "'");
+			LOGGER.error("'" + persistableId + "' already registered for class '" + (currentClass)
+					+ "'.  Cannot register '" + persistableClass + "' with id '" + persistableId + "'");
 			return;
 		}
 		classRegistry.put(
@@ -89,8 +85,7 @@ public class PersistableFactory
 
 	public Persistable newInstance(
 			final short id ) {
-		final Supplier<Persistable> constructor = constructorRegistry.get(
-				id);
+		final Supplier<Persistable> constructor = constructorRegistry.get(id);
 		if (constructor != null) {
 			return constructor.get();
 		}

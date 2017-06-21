@@ -197,8 +197,7 @@ public class SecondaryIndex<T> implements
 		buf.get(fieldIdBinary);
 		buf.get(secondaryIndexTypeBinary);
 
-		indexStrategy = (FieldIndexStrategy<?, ?>) PersistenceUtils.fromBinary(
-				indexStrategyBinary);
+		indexStrategy = (FieldIndexStrategy<?, ?>) PersistenceUtils.fromBinary(indexStrategyBinary);
 
 		fieldId = new ByteArrayId(
 				fieldIdBinary);

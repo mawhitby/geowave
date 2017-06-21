@@ -26,7 +26,7 @@ public class PersistableStore implements
 	// use the convenient methods
 	private DataStorePluginOptions pluginOptions;
 
-	protected PersistableStore() {}
+	public PersistableStore() {}
 
 	public PersistableStore(
 			final DataStorePluginOptions options ) {
@@ -89,10 +89,5 @@ public class PersistableStore implements
 		pluginOptions.load(
 				configOptions,
 				null);
-	}
-
-	@Override
-	public PersistableStore getPersistable() {
-		return new PersistableStore();
 	}
 }

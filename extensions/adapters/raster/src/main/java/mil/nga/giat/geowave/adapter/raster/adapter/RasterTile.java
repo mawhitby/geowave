@@ -35,7 +35,7 @@ public class RasterTile<T extends Persistable> implements
 	private DataBuffer dataBuffer;
 	private T metadata;
 
-	protected RasterTile() {
+	public RasterTile() {
 		super();
 	}
 
@@ -113,9 +113,7 @@ public class RasterTile<T extends Persistable> implements
 			if (metadataLength > 0) {
 				final byte[] metadataBytes = new byte[metadataLength];
 				buf.get(metadataBytes);
-				metadata = (T) PersistenceUtils.fromBinary(
-						metadataBytes,
-						Persistable.class);
+				metadata = (T) PersistenceUtils.fromBinary(metadataBytes);
 			}
 			final byte[] dataBufferBytes = new byte[bytes.length - metadataLength - 4];
 			buf.get(dataBufferBytes);
@@ -143,10 +141,5 @@ public class RasterTile<T extends Persistable> implements
 			final Mergeable merge ) {
 		// This will get wrapped as a MergeableRasterTile by the combiner to
 		// support merging
-	}
-
-	@Override
-	public RasterTile<T> getPersistable() {
-		return new RasterTile<T>();
 	}
 }

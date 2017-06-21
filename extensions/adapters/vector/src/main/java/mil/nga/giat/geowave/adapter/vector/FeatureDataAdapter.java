@@ -744,9 +744,7 @@ public class FeatureDataAdapter extends
 					e);
 		}
 
-		secondaryIndexManager = PersistenceUtils.fromBinary(
-				secondaryIndexBytes,
-				SecondaryIndexManager.class);
+		secondaryIndexManager = (SecondaryIndexManager) PersistenceUtils.fromBinary(secondaryIndexBytes);
 
 		return null;
 	}
@@ -973,10 +971,5 @@ public class FeatureDataAdapter extends
 				model.getId(),
 				dimensionFieldIds);
 		return dimensionFieldIds;
-	}
-
-	@Override
-	public FeatureDataAdapter getPersistable() {
-		return new FeatureDataAdapter();
 	}
 }

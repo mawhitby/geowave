@@ -25,8 +25,7 @@ import org.slf4j.LoggerFactory;
  */
 public class PersistenceUtils
 {
-	private final static Logger LOGGER = LoggerFactory.getLogger(
-			PersistenceUtils.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(PersistenceUtils.class);
 
 	public static byte[] toBinary(
 			final Collection<? extends Persistable> persistables ) {
@@ -37,23 +36,42 @@ public class PersistenceUtils
 
 		final List<byte[]> persistableBinaries = new ArrayList<byte[]>();
 		for (final Persistable persistable : persistables) {
-			final byte[] binary = toBinary(
-					persistable);
+			final byte[] binary = toBinary(persistable);
 			byteCount += (4 + binary.length);
-			persistableBinaries.add(
-					binary);
+			persistableBinaries.add(binary);
 		}
-		final ByteBuffer buf = ByteBuffer.allocate(
-				byteCount);
-		buf.putInt(
-				persistables.size());
+		final ByteBuffer buf = ByteBuffer.allocate(byteCount);
+		buf.putInt(persistables.size());
 		for (final byte[] binary : persistableBinaries) {
-			buf.putInt(
-					binary.length);
-			buf.put(
-					binary);
+			buf.putInt(binary.length);
+			buf.put(binary);
 		}
 		return buf.array();
+	}
+
+	public static byte[] toClassId(
+			final Persistable persistable ) {
+		if (persistable == null) {
+			return new byte[0];
+		}
+		final Short classId = PersistableFactory.getInstance().getClassIdMapping().get(
+				persistable.getClass());
+		if (classId != null) {
+			final ByteBuffer buf = ByteBuffer.allocate(2);
+			buf.putShort(classId);
+			return buf.array();
+		}
+		return new byte[0];
+	}
+
+	public static Persistable fromClassId(
+			final byte[] bytes ) {
+		final ByteBuffer buf = ByteBuffer.wrap(bytes);
+		final short classId = buf.getShort();
+
+		final Persistable retVal = PersistableFactory.getInstance().newInstance(
+				classId);
+		return retVal;
 	}
 
 	public static byte[] toBinary(
@@ -65,12 +83,9 @@ public class PersistenceUtils
 				persistable.getClass());
 		if (classId != null) {
 			final byte[] persistableBinary = persistable.toBinary();
-			final ByteBuffer buf = ByteBuffer.allocate(
-					2 + persistableBinary.length);
-			buf.putShort(
-					classId);
-			buf.put(
-					persistableBinary);
+			final ByteBuffer buf = ByteBuffer.allocate(2 + persistableBinary.length);
+			buf.putShort(classId);
+			buf.put(persistableBinary);
 			return buf.array();
 		}
 		return new byte[0];
@@ -84,34 +99,30 @@ public class PersistenceUtils
 			// array, assume that nothing was persisted
 			return persistables;
 		}
-		final ByteBuffer buf = ByteBuffer.wrap(
-				bytes);
+		final ByteBuffer buf = ByteBuffer.wrap(bytes);
 		final int size = buf.getInt();
 		for (int i = 0; i < size; i++) {
 			final byte[] persistableBinary = new byte[buf.getInt()];
-			buf.get(
-					persistableBinary);
-			persistables.add(
-					fromBinary(
-							persistableBinary));
+			buf.get(persistableBinary);
+			persistables.add(fromBinary(persistableBinary));
 		}
 		return persistables;
 	}
 
 	public static Persistable fromBinary(
 			final byte[] bytes ) {
-		final ByteBuffer buf = ByteBuffer.wrap(
-				bytes);
+		if ((bytes == null) || (bytes.length < 2)) {
+			return null;
+		}
+		final ByteBuffer buf = ByteBuffer.wrap(bytes);
 		final short classId = buf.getShort();
 
 		final Persistable retVal = PersistableFactory.getInstance().newInstance(
 				classId);
 
 		final byte[] persistableBinary = new byte[bytes.length - 2];
-		buf.get(
-				persistableBinary);
-		retVal.fromBinary(
-				persistableBinary);
+		buf.get(persistableBinary);
+		retVal.fromBinary(persistableBinary);
 		return retVal;
 	}
 }

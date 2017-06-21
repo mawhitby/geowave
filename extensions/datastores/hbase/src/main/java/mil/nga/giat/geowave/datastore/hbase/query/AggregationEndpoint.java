@@ -100,9 +100,7 @@ public class AggregationEndpoint extends
 			// Handle aggregation params
 			if (request.getAggregation().hasParams()) {
 				final byte[] parameterBytes = request.getAggregation().getParams().toByteArray();
-				final Persistable aggregationParams = PersistenceUtils.fromBinary(
-						parameterBytes,
-						Persistable.class);
+				final Persistable aggregationParams = PersistenceUtils.fromBinary(parameterBytes);
 				aggregation.setParameters(aggregationParams);
 			}
 		}

@@ -163,8 +163,7 @@ public class BasicNumericDataset implements
 		for (int d = 0; d < numDimensions; d++) {
 			final byte[] binary = new byte[buf.getInt()];
 			buf.get(binary);
-			dataPerDimension[d] = (NumericData) PersistenceUtils.fromBinary(
-					binary);
+			dataPerDimension[d] = (NumericData) PersistenceUtils.fromBinary(binary);
 		}
 	}
 }

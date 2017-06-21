@@ -224,13 +224,11 @@ public class SingleTierSubStrategy implements
 		baseDefinitions = new NumericDimensionDefinition[numDimensions];
 		final byte[] sfcBinary = new byte[buf.getInt()];
 		buf.get(sfcBinary);
-		sfc = (SpaceFillingCurve) PersistenceUtils.fromBinary(
-				sfcBinary);
+		sfc = (SpaceFillingCurve) PersistenceUtils.fromBinary(sfcBinary);
 		for (int i = 0; i < numDimensions; i++) {
 			final byte[] dim = new byte[buf.getInt()];
 			buf.get(dim);
-			baseDefinitions[i] = (NumericDimensionDefinition) PersistenceUtils.fromBinary(
-					dim);
+			baseDefinitions[i] = (NumericDimensionDefinition) PersistenceUtils.fromBinary(dim);
 		}
 	}
 

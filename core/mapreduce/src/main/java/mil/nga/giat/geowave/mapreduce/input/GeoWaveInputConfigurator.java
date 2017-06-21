@@ -48,9 +48,7 @@ public class GeoWaveInputConfigurator extends
 				"");
 		if ((queryStr != null) && !queryStr.isEmpty()) {
 			final byte[] queryBytes = ByteArrayUtils.byteArrayFromString(queryStr);
-			return PersistenceUtils.fromBinary(
-					queryBytes,
-					DistributableQuery.class);
+			return (DistributableQuery) PersistenceUtils.fromBinary(queryBytes);
 		}
 		return null;
 	}
@@ -65,9 +63,7 @@ public class GeoWaveInputConfigurator extends
 				"");
 		if ((queryStr != null) && !queryStr.isEmpty()) {
 			final byte[] queryBytes = ByteArrayUtils.byteArrayFromString(queryStr);
-			return PersistenceUtils.fromBinary(
-					queryBytes,
-					QueryOptions.class);
+			return (QueryOptions) PersistenceUtils.fromBinary(queryBytes);
 		}
 		return null;
 	}
@@ -114,9 +110,7 @@ public class GeoWaveInputConfigurator extends
 				GeoWaveConfg.INDEX));
 		if (input != null) {
 			final byte[] indexBytes = ByteArrayUtils.byteArrayFromString(input);
-			return PersistenceUtils.fromBinary(
-					indexBytes,
-					PrimaryIndex.class);
+			return (PrimaryIndex) PersistenceUtils.fromBinary(indexBytes);
 		}
 		return null;
 	}

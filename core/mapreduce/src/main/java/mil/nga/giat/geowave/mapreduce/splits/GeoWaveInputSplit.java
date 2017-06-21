@@ -91,9 +91,7 @@ public abstract class GeoWaveInputSplit extends
 			final int indexLength = in.readInt();
 			final byte[] indexBytes = new byte[indexLength];
 			in.readFully(indexBytes);
-			final PrimaryIndex index = PersistenceUtils.fromBinary(
-					indexBytes,
-					PrimaryIndex.class);
+			final PrimaryIndex index = (PrimaryIndex) PersistenceUtils.fromBinary(indexBytes);
 			final int numRanges = in.readInt();
 			final List<RangeLocationPair> rangeList = new ArrayList<RangeLocationPair>(
 					numRanges);

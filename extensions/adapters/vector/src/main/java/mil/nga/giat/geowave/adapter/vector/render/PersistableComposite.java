@@ -26,7 +26,7 @@ public class PersistableComposite implements
 	private int blendModeOrAlphaRule = 0;
 	private float alpha = 1f;
 
-	protected PersistableComposite() {}
+	public PersistableComposite() {}
 
 	public PersistableComposite(
 			final Composite composite ) {
@@ -71,10 +71,5 @@ public class PersistableComposite implements
 		isBlend = (buf.get() == 0);
 		blendModeOrAlphaRule = buf.getInt();
 		alpha = buf.getFloat();
-	}
-
-	@Override
-	public PersistableComposite getPersistable() {
-		return new PersistableComposite();
 	}
 }

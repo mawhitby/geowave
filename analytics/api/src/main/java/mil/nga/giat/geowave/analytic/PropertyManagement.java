@@ -658,15 +658,12 @@ public class PropertyManagement implements
 	}
 
 	private static Persistable fromBytes(
-			final byte[] data,
-			final Class<? extends Persistable> expectedType )
+			final byte[] data )
 			throws InstantiationException,
 			IllegalAccessException,
 			ClassNotFoundException,
 			UnsupportedEncodingException {
-		return PersistenceUtils.fromBinary(
-				data,
-				expectedType);
+		return PersistenceUtils.fromBinary(data);
 	}
 
 	private Object validate(
@@ -775,9 +772,7 @@ public class PropertyManagement implements
 				final Serializable ob )
 				throws Exception {
 			if (ob instanceof byte[]) {
-				return (DistributableQuery) PropertyManagement.fromBytes(
-						(byte[]) ob,
-						DistributableQuery.class);
+				return (DistributableQuery) PropertyManagement.fromBytes((byte[]) ob);
 			}
 			final PrecisionModel precision = new PrecisionModel();
 			final GeometryFactory geometryFactory = new GeometryFactory(
@@ -824,9 +819,7 @@ public class PropertyManagement implements
 				final Serializable ob )
 				throws Exception {
 			if (ob instanceof byte[]) {
-				return (QueryOptions) PropertyManagement.fromBytes(
-						(byte[]) ob,
-						QueryOptions.class);
+				return (QueryOptions) PropertyManagement.fromBytes((byte[]) ob);
 			}
 			else if (ob instanceof QueryOptions) {
 				return (QueryOptions) ob;
@@ -972,9 +965,7 @@ public class PropertyManagement implements
 				final Serializable ob )
 				throws Exception {
 			if (ob instanceof byte[]) {
-				return fromBytes(
-						(byte[]) ob,
-						Persistable.class);
+				return fromBytes((byte[]) ob);
 			}
 			throw new IllegalArgumentException(
 					String.format(

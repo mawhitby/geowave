@@ -55,9 +55,7 @@ public class HBaseNumericIndexStrategyFilter extends
 			final int indexStrategyLength = buf.getInt();
 			final byte[] indexStrategyBytes = new byte[indexStrategyLength];
 			buf.get(indexStrategyBytes);
-			indexStrategy = PersistenceUtils.fromBinary(
-					indexStrategyBytes,
-					NumericIndexStrategy.class);
+			indexStrategy = (NumericIndexStrategy) PersistenceUtils.fromBinary(indexStrategyBytes);
 			final byte[] coordRangeBytes = new byte[pbBytes.length - indexStrategyLength - 4];
 			buf.get(coordRangeBytes);
 			final ArrayOfArrays arrays = new ArrayOfArrays();

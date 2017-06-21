@@ -19,33 +19,32 @@ public class TestStorePersistableRegistry implements
 	public PersistableIdAndConstructor[] getSupportedPersistables() {
 		return new PersistableIdAndConstructor[] {
 			new PersistableIdAndConstructor(
-					(short) 20000,
+					(short) 10200,
 					MockAbstractDataAdapter::new),
 			new PersistableIdAndConstructor(
-					(short) 20001,
+					(short) 10201,
 					IntegerRangeDataStatistics::new),
 			new PersistableIdAndConstructor(
-					(short) 20002,
+					(short) 10202,
 					TestPersistentIndexFieldHandler::new),
 			new PersistableIdAndConstructor(
-					(short) 20003,
+					(short) 10203,
 					TestDimensionField::new),
 			new PersistableIdAndConstructor(
-					(short) 20004,
+					(short) 10204,
 					MockIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 20005,
+					(short) 10205,
 					TestIndexModel::new),
 			new PersistableIdAndConstructor(
-					(short) 20006,
+					(short) 10206,
 					TestStringAdapter::new),
 			new PersistableIdAndConstructor(
-					(short) 20007,
+					(short) 10207,
 					ExampleNumericIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 20008,
+					(short) 10208,
 					ExampleDimensionOne::new)
 		};
 	}
-
 }

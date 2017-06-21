@@ -314,8 +314,7 @@ public class HilbertSFC implements
 		for (int i = 0; i < numDimensions; i++) {
 			final byte[] dim = new byte[buf.getInt()];
 			buf.get(dim);
-			dimensionDefinitions[i] = (SFCDimensionDefinition) PersistenceUtils.fromBinary(
-					dim);
+			dimensionDefinitions[i] = (SFCDimensionDefinition) PersistenceUtils.fromBinary(dim);
 		}
 		init(dimensionDefinitions);
 	}

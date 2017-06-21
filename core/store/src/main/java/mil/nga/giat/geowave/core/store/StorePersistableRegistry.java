@@ -32,7 +32,9 @@ import mil.nga.giat.geowave.core.store.query.BasicQuery;
 import mil.nga.giat.geowave.core.store.query.CoordinateRangeQuery;
 import mil.nga.giat.geowave.core.store.query.CoordinateRangeQueryFilter;
 import mil.nga.giat.geowave.core.store.query.QueryOptions;
+import mil.nga.giat.geowave.core.store.query.aggregate.CountAggregation;
 import mil.nga.giat.geowave.core.store.query.aggregate.CountResult;
+import mil.nga.giat.geowave.core.store.query.aggregate.DataStatisticsAggregation;
 
 public class StorePersistableRegistry implements
 		PersistableRegistrySpi
@@ -139,8 +141,13 @@ public class StorePersistableRegistry implements
 					CountResult::new),
 			new PersistableIdAndConstructor(
 					(short) 232,
-					QueryOptions::new)
+					QueryOptions::new),
+			new PersistableIdAndConstructor(
+					(short) 233,
+					CountAggregation::new),
+			new PersistableIdAndConstructor(
+					(short) 234,
+					DataStatisticsAggregation::new)
 		};
 	}
-
 }

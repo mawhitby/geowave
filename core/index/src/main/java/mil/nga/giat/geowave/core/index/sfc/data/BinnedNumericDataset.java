@@ -206,7 +206,6 @@ public class BinnedNumericDataset implements
 
 		final byte[] indexRangesBinary = new byte[bytes.length - 5 - binId.length];
 		buf.get(indexRangesBinary);
-		indexRanges = (MultiDimensionalNumericData) PersistenceUtils.fromBinary(
-				indexRangesBinary);
+		indexRanges = (MultiDimensionalNumericData) PersistenceUtils.fromBinary(indexRangesBinary);
 	}
 }

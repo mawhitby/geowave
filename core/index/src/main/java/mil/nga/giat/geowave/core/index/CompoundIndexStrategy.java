@@ -97,10 +97,8 @@ public class CompoundIndexStrategy implements
 		buf.get(delegateBinary1);
 		final byte[] delegateBinary2 = new byte[bytes.length - delegateBinary1Length - 4];
 		buf.get(delegateBinary2);
-		subStrategy1 = (NumericIndexStrategy) PersistenceUtils.fromBinary(
-				delegateBinary1);
-		subStrategy2 = (NumericIndexStrategy) PersistenceUtils.fromBinary(
-				delegateBinary2);
+		subStrategy1 = (NumericIndexStrategy) PersistenceUtils.fromBinary(delegateBinary1);
+		subStrategy2 = (NumericIndexStrategy) PersistenceUtils.fromBinary(delegateBinary2);
 		init();
 		defaultNumberOfRanges = (int) Math.ceil(Math.pow(
 				2,
@@ -614,8 +612,7 @@ public class CompoundIndexStrategy implements
 			final ByteBuffer buf = ByteBuffer.wrap(bytes);
 			final byte[] metaBytes = new byte[bytes.length - 4];
 			buf.get(metaBytes);
-			metaData = (IndexMetaData) PersistenceUtils.fromBinary(
-					metaBytes);
+			metaData = (IndexMetaData) PersistenceUtils.fromBinary(metaBytes);
 			index = buf.getInt();
 		}
 

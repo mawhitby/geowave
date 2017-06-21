@@ -314,8 +314,7 @@ public class BasicQueryFilter implements
 					buf.getDouble(),
 					buf.getDouble());
 			buf.get(field);
-			dimensionFields[d] = (NumericDimensionField<?>) PersistenceUtils.fromBinary(
-					field);
+			dimensionFields[d] = (NumericDimensionField<?>) PersistenceUtils.fromBinary(field);
 		}
 		constraints = new BasicNumericDataset(
 				data);

@@ -615,8 +615,7 @@ public class QueryOptions implements
 		if (adapterBytesLength > 0) {
 			final byte[] adapterBytes = new byte[adapterBytesLength];
 			buf.get(adapterBytes);
-			dataAdapter = (AbstractDataAdapter<?>) PersistenceUtils.fromBinary(
-					adapterBytes);
+			dataAdapter = (AbstractDataAdapter<?>) PersistenceUtils.fromBinary(adapterBytes);
 		}
 		final int fieldIdsLength = buf.getInt();
 		List<String> fieldIds = null;

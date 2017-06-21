@@ -342,9 +342,7 @@ public class HBaseConstraintsQuery extends
 				final ByteString value = entry.getValue();
 				if ((value != null) && !value.isEmpty()) {
 					final byte[] bvalue = value.toByteArray();
-					final Mergeable mvalue = PersistenceUtils.fromBinary(
-							bvalue,
-							Mergeable.class);
+					final Mergeable mvalue = (Mergeable) PersistenceUtils.fromBinary(bvalue);
 
 					LOGGER.debug("Value from region " + regionCount + " is " + mvalue);
 

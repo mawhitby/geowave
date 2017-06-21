@@ -64,9 +64,7 @@ public class NumericIndexStrategyFilterIterator implements
 			if (options.containsKey(INDEX_STRATEGY_KEY)) {
 				final String idxStrategyStr = options.get(INDEX_STRATEGY_KEY);
 				final byte[] idxStrategyBytes = ByteArrayUtils.byteArrayFromString(idxStrategyStr);
-				indexStrategy = PersistenceUtils.fromBinary(
-						idxStrategyBytes,
-						NumericIndexStrategy.class);
+				indexStrategy = (NumericIndexStrategy) PersistenceUtils.fromBinary(idxStrategyBytes);
 			}
 			else {
 				throw new IllegalArgumentException(

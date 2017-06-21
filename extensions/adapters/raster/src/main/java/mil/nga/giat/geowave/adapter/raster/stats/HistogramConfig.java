@@ -26,7 +26,7 @@ public class HistogramConfig implements
 	private double[] lowValues;
 	private int[] numBins;
 
-	protected HistogramConfig() {}
+	public HistogramConfig() {}
 
 	public HistogramConfig(
 			final SampleModel sampleModel ) {
@@ -107,10 +107,5 @@ public class HistogramConfig implements
 			highValues[b] = buf.getDouble();
 			numBins[b] = buf.getInt();
 		}
-	}
-
-	@Override
-	public HistogramConfig getPersistable() {
-		return new HistogramConfig();
 	}
 }

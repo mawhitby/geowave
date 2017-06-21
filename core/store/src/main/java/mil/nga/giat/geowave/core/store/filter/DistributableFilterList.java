@@ -50,23 +50,16 @@ public class DistributableFilterList extends
 		final List<byte[]> filterBinaries = new ArrayList<byte[]>(
 				filters.size());
 		for (final DistributableQueryFilter filter : filters) {
-			final byte[] filterBinary = PersistenceUtils.toBinary(
-					filter);
+			final byte[] filterBinary = PersistenceUtils.toBinary(filter);
 			byteBufferLength += (4 + filterBinary.length);
-			filterBinaries.add(
-					filterBinary);
+			filterBinaries.add(filterBinary);
 		}
-		final ByteBuffer buf = ByteBuffer.allocate(
-				byteBufferLength);
-		buf.putInt(
-				logicalAnd ? 1 : 0);
-		buf.putInt(
-				filters.size());
+		final ByteBuffer buf = ByteBuffer.allocate(byteBufferLength);
+		buf.putInt(logicalAnd ? 1 : 0);
+		buf.putInt(filters.size());
 		for (final byte[] filterBinary : filterBinaries) {
-			buf.putInt(
-					filterBinary.length);
-			buf.put(
-					filterBinary);
+			buf.putInt(filterBinary.length);
+			buf.put(filterBinary);
 		}
 		return buf.array();
 	}
@@ -74,19 +67,15 @@ public class DistributableFilterList extends
 	@Override
 	public void fromBinary(
 			final byte[] bytes ) {
-		final ByteBuffer buf = ByteBuffer.wrap(
-				bytes);
+		final ByteBuffer buf = ByteBuffer.wrap(bytes);
 		logicalAnd = buf.getInt() > 0;
 		final int numFilters = buf.getInt();
 		filters = new ArrayList<DistributableQueryFilter>(
 				numFilters);
 		for (int i = 0; i < numFilters; i++) {
 			final byte[] filter = new byte[buf.getInt()];
-			buf.get(
-					filter);
-			filters.add(
-					(DistributableQueryFilter) PersistenceUtils.fromBinary(
-							filter));
+			buf.get(filter);
+			filters.add((DistributableQueryFilter) PersistenceUtils.fromBinary(filter));
 		}
 	}
 }

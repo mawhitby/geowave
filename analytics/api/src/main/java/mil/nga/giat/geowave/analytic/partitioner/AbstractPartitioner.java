@@ -317,9 +317,7 @@ public abstract class AbstractPartitioner<T> implements
 			ClassNotFoundException {
 		final byte[] indexData = new byte[stream.readInt()];
 		stream.readFully(indexData);
-		index = PersistenceUtils.fromBinary(
-				indexData,
-				PrimaryIndex.class);
+		index = (PrimaryIndex) PersistenceUtils.fromBinary(indexData);
 		precisionFactor = stream.readDouble();
 		distancePerDimension = new double[stream.readInt()];
 		for (int i = 0; i < distancePerDimension.length; i++) {

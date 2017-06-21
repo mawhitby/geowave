@@ -201,8 +201,7 @@ public class ZOrderSFC implements
 		for (int i = 0; i < numDimensions; i++) {
 			final byte[] dim = new byte[buf.getInt()];
 			buf.get(dim);
-			dimensionDefs[i] = (SFCDimensionDefinition) PersistenceUtils.fromBinary(
-					dim);
+			dimensionDefs[i] = (SFCDimensionDefinition) PersistenceUtils.fromBinary(dim);
 		}
 		init(dimensionDefs);
 	}

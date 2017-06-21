@@ -57,9 +57,7 @@ public class MergingCombiner extends
 	protected Mergeable getMergeable(
 			final Key key,
 			final byte[] binary ) {
-		return PersistenceUtils.fromBinary(
-				binary,
-				Mergeable.class);
+		return (Mergeable) PersistenceUtils.fromBinary(binary);
 	}
 
 	protected byte[] getBinary(

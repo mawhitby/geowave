@@ -42,8 +42,7 @@ public class DateRangeFilterTest
 				false,
 				false);
 		final byte[] filterBytes = PersistenceUtils.toBinary(filter);
-		final DateRangeFilter deserializedFilter = (DateRangeFilter) PersistenceUtils.fromBinary(
-				filterBytes);
+		final DateRangeFilter deserializedFilter = (DateRangeFilter) PersistenceUtils.fromBinary(filterBytes);
 		Assert.assertTrue(filter.fieldId.equals(deserializedFilter.fieldId));
 		Assert.assertTrue(filter.start.equals(deserializedFilter.start));
 		Assert.assertTrue(filter.end.equals(deserializedFilter.end));

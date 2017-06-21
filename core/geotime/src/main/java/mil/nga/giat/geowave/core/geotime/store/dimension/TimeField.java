@@ -46,7 +46,7 @@ public class TimeField implements
 	private final TimeAdapter adapter;
 	private ByteArrayId fieldId;
 
-	protected TimeField() {
+	public TimeField() {
 		adapter = new TimeAdapter();
 	}
 
@@ -168,9 +168,7 @@ public class TimeField implements
 
 		final byte[] dimensionBinary = new byte[bytes.length - fieldIdLength - 4];
 		buf.get(dimensionBinary);
-		baseDefinition = PersistenceUtils.fromBinary(
-				dimensionBinary,
-				NumericDimensionDefinition.class);
+		baseDefinition = (NumericDimensionDefinition) PersistenceUtils.fromBinary(dimensionBinary);
 	}
 
 	@Override
@@ -212,10 +210,5 @@ public class TimeField implements
 			return false;
 		}
 		return true;
-	}
-
-	@Override
-	public TimeField getPersistable() {
-		return new TimeField();
 	}
 }

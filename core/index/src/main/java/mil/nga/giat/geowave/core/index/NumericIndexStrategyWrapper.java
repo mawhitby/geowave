@@ -59,8 +59,7 @@ public class NumericIndexStrategyWrapper implements
 		buf.get(idBinary);
 		buf.get(delegateBinary);
 		id = StringUtils.stringFromBinary(idBinary);
-		indexStrategy = (NumericIndexStrategy) PersistenceUtils.fromBinary(
-				delegateBinary);
+		indexStrategy = (NumericIndexStrategy) PersistenceUtils.fromBinary(delegateBinary);
 	}
 
 	@Override

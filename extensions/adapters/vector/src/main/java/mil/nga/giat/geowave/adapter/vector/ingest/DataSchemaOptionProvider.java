@@ -50,9 +50,4 @@ public class DataSchemaOptionProvider implements
 			boolean supplementalFields ) {
 		includeSupplementalFields = supplementalFields;
 	}
-
-	@Override
-	public DataSchemaOptionProvider getPersistable() {
-		return new DataSchemaOptionProvider();
-	}
 }

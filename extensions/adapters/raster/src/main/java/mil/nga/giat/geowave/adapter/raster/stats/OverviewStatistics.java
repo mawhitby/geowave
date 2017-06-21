@@ -33,7 +33,7 @@ public class OverviewStatistics extends
 
 	private Resolution[] resolutions = new Resolution[] {};
 
-	protected OverviewStatistics() {
+	public OverviewStatistics() {
 		super();
 	}
 
@@ -77,9 +77,7 @@ public class OverviewStatistics extends
 			for (int i = 0; i < resolutions.length; i++) {
 				final byte[] resBytes = new byte[buf.getInt()];
 				buf.get(resBytes);
-				resolutions[i] = PersistenceUtils.fromBinary(
-						resBytes,
-						Resolution.class);
+				resolutions[i] = (Resolution) PersistenceUtils.fromBinary(resBytes);
 			}
 		}
 	}
@@ -134,10 +132,5 @@ public class OverviewStatistics extends
 		synchronized (this) {
 			return resolutions;
 		}
-	}
-
-	@Override
-	public OverviewStatistics getPersistable() {
-		return new OverviewStatistics();
 	}
 }

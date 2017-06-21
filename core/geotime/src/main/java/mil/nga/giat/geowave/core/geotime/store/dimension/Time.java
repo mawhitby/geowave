@@ -40,7 +40,7 @@ public interface Time extends
 		private long endTime;
 		private byte[] visibility;
 
-		protected TimeRange() {}
+		public TimeRange() {}
 
 		public TimeRange(
 				final long startTime,
@@ -95,11 +95,6 @@ public interface Time extends
 			return Math.abs(t0 - t1) <= (t0 + t1);
 
 		}
-
-		@Override
-		public TimeRange getPersistable() {
-			return new TimeRange();
-		}
 	}
 
 	/**
@@ -113,7 +108,7 @@ public interface Time extends
 		private long time;
 		private byte[] visibility;
 
-		protected Timestamp() {}
+		public Timestamp() {}
 
 		public Timestamp(
 				final long time,
@@ -160,11 +155,6 @@ public interface Time extends
 			assert (field[0] instanceof TimeField);
 			return (long) Math.floor(rangeData[0].getMin()) <= this.time
 					&& (long) Math.ceil(rangeData[0].getMax()) >= this.time;
-		}
-
-		@Override
-		public Timestamp getPersistable() {
-			return new Timestamp();
 		}
 	}
 

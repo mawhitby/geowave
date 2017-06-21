@@ -94,8 +94,7 @@ public class CompoundIndexStrategyTest
 	@Test
 	public void testBinaryEncoding() {
 		final byte[] bytes = PersistenceUtils.toBinary(compoundIndexStrategy);
-		final CompoundIndexStrategy deserializedStrategy = (CompoundIndexStrategy) PersistenceUtils.fromBinary(
-				bytes);
+		final CompoundIndexStrategy deserializedStrategy = (CompoundIndexStrategy) PersistenceUtils.fromBinary(bytes);
 		final byte[] bytes2 = PersistenceUtils.toBinary(deserializedStrategy);
 		Assert.assertArrayEquals(
 				bytes,

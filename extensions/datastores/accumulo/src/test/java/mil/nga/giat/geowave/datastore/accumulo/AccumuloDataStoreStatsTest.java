@@ -584,11 +584,6 @@ public class AccumuloDataStoreStatsTest
 					final byte[] bytes ) {
 
 			}
-
-			@Override
-			public Persistable getPersistable() {
-				return null;
-			}
 		};
 
 		private final static EntryVisibilityHandler<TestGeometry> GEOMETRY_VISIBILITY_HANDLER = new FieldTypeStatisticVisibility<TestGeometry>(
@@ -767,11 +762,6 @@ public class AccumuloDataStoreStatsTest
 			}
 			return null;
 		}
-
-		@Override
-		public TestGeometryAdapter getPersistable() {
-			return new TestGeometryAdapter();
-		}
 	}
 
 	private final static ByteArrayId[] SUPPORTED_STATS_IDS = new ByteArrayId[] {
@@ -779,7 +769,7 @@ public class AccumuloDataStoreStatsTest
 		CountDataStatistics.STATS_TYPE
 	};
 
-	private static class GeoBoundingBoxStatistics extends
+	protected static class GeoBoundingBoxStatistics extends
 			BoundingBoxDataStatistics<TestGeometry>
 	{
 		protected GeoBoundingBoxStatistics() {
@@ -801,11 +791,6 @@ public class AccumuloDataStoreStatsTest
 				return geometry.getEnvelopeInternal();
 			}
 			return null;
-		}
-
-		@Override
-		public GeoBoundingBoxStatistics getPersistable() {
-			return new GeoBoundingBoxStatistics();
 		}
 	}
 }

@@ -269,9 +269,7 @@ abstract public class AbstractAccumuloPersistence<T extends Persistable> extends
 	@SuppressWarnings("unchecked")
 	protected T entryToValue(
 			final Entry<Key, Value> entry ) {
-		final T result = (T) PersistenceUtils.fromBinary(
-				entry.getValue().get(),
-				Persistable.class);
+		final T result = (T) PersistenceUtils.fromBinary(entry.getValue().get());
 		if (result != null) {
 			addObjectToCache(
 					getPrimaryId(result),

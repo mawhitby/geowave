@@ -127,11 +127,6 @@ public class DistortionGroupManagement
 				final byte[] bytes ) {
 			batchId = StringUtils.stringFromBinary(bytes);
 		}
-
-		@Override
-		public BatchIdFilter getPersistable() {
-			return new BatchIdFilter();
-		}
 	}
 
 	public static class BatchIdQuery implements
@@ -498,11 +493,6 @@ public class DistortionGroupManagement
 				}
 			}
 			return null;
-		}
-
-		@Override
-		public DistortionDataAdapter getPersistable() {
-			return new DistortionDataAdapter();
 		}
 	}
 }

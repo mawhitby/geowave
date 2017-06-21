@@ -140,9 +140,7 @@ abstract public class SpatialField implements
 
 		final byte[] dimensionBinary = new byte[bytes.length - fieldIdLength - 4];
 		buf.get(dimensionBinary);
-		baseDefinition = PersistenceUtils.fromBinary(
-				dimensionBinary,
-				NumericDimensionDefinition.class);
+		baseDefinition = (NumericDimensionDefinition) PersistenceUtils.fromBinary(dimensionBinary);
 	}
 
 	@Override

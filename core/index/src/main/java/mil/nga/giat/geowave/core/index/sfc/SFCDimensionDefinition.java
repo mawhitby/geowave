@@ -124,8 +124,7 @@ public class SFCDimensionDefinition implements
 		final byte[] dimensionBinary = new byte[bytes.length - 4];
 		bitsOfPrecision = buf.getInt();
 		buf.get(dimensionBinary);
-		dimensionDefinition = (NumericDimensionDefinition) PersistenceUtils.fromBinary(
-				dimensionBinary);
+		dimensionDefinition = (NumericDimensionDefinition) PersistenceUtils.fromBinary(dimensionBinary);
 	}
 
 	@Override

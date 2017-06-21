@@ -56,9 +56,7 @@ public class RasterTileRowTransform<T extends Persistable> implements
 		final String mergeStrategyStr = options.get(MERGE_STRATEGY_KEY);
 		if (mergeStrategyStr != null) {
 			final byte[] mergeStrategyBytes = ByteArrayUtils.byteArrayFromString(mergeStrategyStr);
-			mergeStrategy = PersistenceUtils.fromBinary(
-					mergeStrategyBytes,
-					RootMergeStrategy.class);
+			mergeStrategy = (RootMergeStrategy<T>) PersistenceUtils.fromBinary(mergeStrategyBytes);
 		}
 	}
 
@@ -67,9 +65,7 @@ public class RasterTileRowTransform<T extends Persistable> implements
 			final ByteArrayId adapterId,
 			final ByteArrayId fieldId,
 			final byte[] rowValueBinary ) {
-		final RasterTile mergeable = PersistenceUtils.classFactory(
-				RasterTile.class.getName(),
-				RasterTile.class);
+		final RasterTile mergeable = new RasterTile();
 
 		if (mergeable != null) {
 			mergeable.fromBinary(rowValueBinary);
@@ -102,10 +98,5 @@ public class RasterTileRowTransform<T extends Persistable> implements
 	@Override
 	public int getBaseTransformPriority() {
 		return RASTER_TILE_PRIORITY;
-	}
-
-	@Override
-	public RasterTileRowTransform<T> getPersistable() {
-		return new RasterTileRowTransform<T>();
 	}
 }

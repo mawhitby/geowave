@@ -63,8 +63,7 @@ public class MemoryAdapterIndexMappingStore implements
 			final byte[] data = (byte[]) in.readObject();
 			toIndexMapping.put(
 					id,
-					(AdapterToIndexMapping) PersistenceUtils.fromBinary(
-							data));
+					(AdapterToIndexMapping) PersistenceUtils.fromBinary(data));
 		}
 	}
 

@@ -80,11 +80,6 @@ public class TestObjectDataAdapter extends
 				final byte[] bytes ) {
 
 		}
-
-		@Override
-		public Persistable getPersistable() {
-			return null;
-		}
 	};
 
 	private static final NativeFieldHandler<TestObject, Object> ID_FIELD_HANDLER = new NativeFieldHandler<TestObject, Object>() {
@@ -286,10 +281,5 @@ public class TestObjectDataAdapter extends
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public TestObjectDataAdapter getPersistable() {
-		return new TestObjectDataAdapter();
 	}
 }

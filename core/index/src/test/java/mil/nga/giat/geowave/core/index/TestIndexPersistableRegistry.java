@@ -3,7 +3,7 @@ package mil.nga.giat.geowave.core.index;
 import mil.nga.giat.geowave.core.index.PersistenceUtilsTest.APersistable;
 import mil.nga.giat.geowave.core.index.persist.PersistableRegistrySpi;
 
-public class TestIndexPersistableRegistry implements 
+public class TestIndexPersistableRegistry implements
 		PersistableRegistrySpi
 {
 
@@ -11,9 +11,8 @@ public class TestIndexPersistableRegistry implements
 	public PersistableIdAndConstructor[] getSupportedPersistables() {
 		return new PersistableIdAndConstructor[] {
 			new PersistableIdAndConstructor(
-					(short) 10000,
+					(short) 10100,
 					APersistable::new),
 		};
 	}
-
 }

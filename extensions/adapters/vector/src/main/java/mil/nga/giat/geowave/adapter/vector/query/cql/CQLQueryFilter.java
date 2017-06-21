@@ -40,7 +40,7 @@ public class CQLQueryFilter implements
 	private GeotoolsFeatureDataAdapter adapter;
 	private Filter filter;
 
-	protected CQLQueryFilter() {
+	public CQLQueryFilter() {
 		super();
 	}
 
@@ -173,9 +173,7 @@ public class CQLQueryFilter implements
 			buf.get(adapterBytes);
 
 			try {
-				adapter = PersistenceUtils.fromBinary(
-						adapterBytes,
-						GeotoolsFeatureDataAdapter.class);
+				adapter = (GeotoolsFeatureDataAdapter) PersistenceUtils.fromBinary(adapterBytes);
 			}
 			catch (final Exception e) {
 				throw new IllegalArgumentException(
@@ -186,10 +184,5 @@ public class CQLQueryFilter implements
 			LOGGER.warn("Feature Data Adapter is empty bytes");
 			adapter = null;
 		}
-	}
-
-	@Override
-	public CQLQueryFilter getPersistable() {
-		return new CQLQueryFilter();
 	}
 }

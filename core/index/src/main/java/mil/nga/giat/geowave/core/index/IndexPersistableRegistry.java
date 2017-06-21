@@ -15,6 +15,7 @@ import mil.nga.giat.geowave.core.index.sfc.tiered.SingleTierSubStrategy;
 import mil.nga.giat.geowave.core.index.sfc.tiered.TieredSFCIndexStrategy;
 import mil.nga.giat.geowave.core.index.sfc.tiered.TieredSFCIndexStrategy.TierIndexMetaData;
 import mil.nga.giat.geowave.core.index.sfc.xz.XZHierarchicalIndexStrategy;
+import mil.nga.giat.geowave.core.index.sfc.xz.XZHierarchicalIndexStrategy.XZHierarchicalIndexMetaData;
 import mil.nga.giat.geowave.core.index.sfc.xz.XZOrderSFC;
 import mil.nga.giat.geowave.core.index.sfc.zorder.ZOrderSFC;
 import mil.nga.giat.geowave.core.index.simple.HashKeyIndexStrategy;
@@ -35,83 +36,85 @@ public class IndexPersistableRegistry implements
 					CompoundIndexMetaDataWrapper::new),
 			new PersistableIdAndConstructor(
 					(short) 101,
-					CompoundIndexStrategy::new),
+					TierIndexMetaData::new),
 			new PersistableIdAndConstructor(
 					(short) 102,
+					CompoundIndexStrategy::new),
+			new PersistableIdAndConstructor(
+					(short) 103,
 					CoordinateRange::new),
 			new PersistableIdAndConstructor(
-					(short) 103,
+					(short) 104,
 					MultiDimensionalCoordinateRanges::new),
 			new PersistableIdAndConstructor(
-					(short) 103,
+					(short) 105,
 					ArrayOfArrays::new),
 			new PersistableIdAndConstructor(
-					(short) 104,
+					(short) 106,
 					MultiDimensionalCoordinateRangesArray::new),
 			new PersistableIdAndConstructor(
-					(short) 105,
+					(short) 107,
 					NullNumericIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 106,
+					(short) 108,
 					NumericIndexStrategyWrapper::new),
 			new PersistableIdAndConstructor(
-					(short) 107,
+					(short) 109,
 					BasicDimensionDefinition::new),
 			new PersistableIdAndConstructor(
-					(short) 108,
+					(short) 110,
 					UnboundedDimensionDefinition::new),
 			new PersistableIdAndConstructor(
-					(short) 109,
+					(short) 111,
 					SFCDimensionDefinition::new),
 			new PersistableIdAndConstructor(
-					(short) 110,
+					(short) 112,
 					BasicNumericDataset::new),
 			new PersistableIdAndConstructor(
-					(short) 111,
+					(short) 113,
 					BinnedNumericDataset::new),
 			new PersistableIdAndConstructor(
-					(short) 112,
+					(short) 114,
 					NumericRange::new),
 			new PersistableIdAndConstructor(
-					(short) 113,
+					(short) 115,
 					NumericValue::new),
 			new PersistableIdAndConstructor(
-					(short) 114,
+					(short) 116,
 					HilbertSFC::new),
 			new PersistableIdAndConstructor(
-					(short) 115,
+					(short) 117,
 					SingleTierSubStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 116,
+					(short) 118,
 					TieredSFCIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 117,
+					(short) 119,
 					XZHierarchicalIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 118,
+					(short) 120,
 					XZOrderSFC::new),
 			new PersistableIdAndConstructor(
-					(short) 119,
+					(short) 121,
 					ZOrderSFC::new),
 			new PersistableIdAndConstructor(
-					(short) 120,
+					(short) 122,
 					HashKeyIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 121,
+					(short) 123,
 					RoundRobinKeyIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 122,
+					(short) 124,
 					SimpleIntegerIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 123,
+					(short) 125,
 					SimpleLongIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 124,
+					(short) 126,
 					SimpleShortIndexStrategy::new),
 			new PersistableIdAndConstructor(
-					(short) 125,
-					TierIndexMetaData::new),
+					(short) 127,
+					XZHierarchicalIndexMetaData::new),
 		};
 	}
-
 }

@@ -92,7 +92,7 @@ public class IndexMetaDataSet<T> extends
 		final byte[] metaBytes = new byte[buffer.remaining()];
 		buffer.get(metaBytes);
 
-		metaData = (List)PersistenceUtils.fromBinaryAsList(metaBytes);
+		metaData = (List) PersistenceUtils.fromBinaryAsList(metaBytes);
 	}
 
 	public IndexMetaData[] toArray() {
@@ -104,9 +104,9 @@ public class IndexMetaDataSet<T> extends
 			final Mergeable merge ) {
 		if ((merge != null) && (merge instanceof IndexMetaDataSet)) {
 			for (int i = 0; i < metaData.size(); i++) {
-				metaData.get(
-						i).merge(
-						((IndexMetaDataSet<T>) merge).metaData.get(i));
+				IndexMetaData imd = metaData.get(i);
+				IndexMetaData imd2 = ((IndexMetaDataSet<T>) merge).metaData.get(i);
+				imd.merge(imd2);
 			}
 		}
 	}

@@ -38,6 +38,10 @@ public class CQLFilterOptionProvider implements
 			null,
 			null);
 
+	public CQLFilterOptionProvider() {
+		super();
+	}
+
 	public String getCqlFilterString() {
 		return convertedFilter.getCqlFilterString();
 	}
@@ -175,10 +179,5 @@ public class CQLFilterOptionProvider implements
 		public String toString() {
 			return cqlFilterString;
 		}
-	}
-
-	@Override
-	public CQLFilterOptionProvider getPersistable() {
-		return new CQLFilterOptionProvider();
 	}
 }

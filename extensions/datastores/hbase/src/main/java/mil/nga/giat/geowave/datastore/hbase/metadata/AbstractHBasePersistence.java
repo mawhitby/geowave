@@ -103,9 +103,7 @@ public abstract class AbstractHBasePersistence<T extends Persistable> extends
 	@SuppressWarnings("unchecked")
 	protected T entryToValue(
 			final Cell entry ) {
-		final T result = (T) PersistenceUtils.fromBinary(
-				CellUtil.cloneValue(entry),
-				Persistable.class);
+		final T result = (T) PersistenceUtils.fromBinary(CellUtil.cloneValue(entry));
 		if (result != null) {
 			addObjectToCache(
 					getPrimaryId(result),

@@ -47,8 +47,7 @@ public class SecondaryIndexManager implements
 	private transient SimpleFeatureType sft;
 	private transient StatsManager statsManager;
 
-	@Deprecated
-	protected SecondaryIndexManager() {}
+	public SecondaryIndexManager() {}
 
 	/**
 	 * Create a SecondaryIndexManager for the given DataAdapter and
@@ -224,7 +223,7 @@ public class SecondaryIndexManager implements
 	@Override
 	public void fromBinary(
 			byte[] bytes ) {
-		final List<Persistable> persistables = PersistenceUtils.fromBinary(bytes);
+		final List<Persistable> persistables = PersistenceUtils.fromBinaryAsList(bytes);
 		for (final Persistable persistable : persistables) {
 			supportedSecondaryIndices.add((SecondaryIndex<SimpleFeature>) persistable);
 		}
@@ -236,10 +235,5 @@ public class SecondaryIndexManager implements
 	 */
 	public StatsManager getStatsManager() {
 		return statsManager;
-	}
-
-	@Override
-	public SecondaryIndexManager getPersistable() {
-		return new SecondaryIndexManager();
 	}
 }

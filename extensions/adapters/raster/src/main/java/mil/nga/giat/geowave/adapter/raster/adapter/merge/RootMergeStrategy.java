@@ -57,7 +57,7 @@ public class RootMergeStrategy<T extends Persistable> implements
 	public Map<Integer, RasterTileMergeStrategy<T>> childMergeStrategies = new HashMap<Integer, RasterTileMergeStrategy<T>>();
 	public Map<ByteArrayId, Integer> adapterIdToChildMergeStrategyKey = new HashMap<ByteArrayId, Integer>();
 
-	protected RootMergeStrategy() {}
+	public RootMergeStrategy() {}
 
 	public RootMergeStrategy(
 			final ByteArrayId adapterId,
@@ -374,9 +374,8 @@ public class RootMergeStrategy<T extends Persistable> implements
 			if (mergeStrategyBinary.length > 0) {
 				try {
 					buf.get(mergeStrategyBinary);
-					final RasterTileMergeStrategy mergeStrategy = PersistenceUtils.fromBinary(
-							mergeStrategyBinary,
-							RasterTileMergeStrategy.class);
+					final RasterTileMergeStrategy mergeStrategy = (RasterTileMergeStrategy) PersistenceUtils
+							.fromBinary(mergeStrategyBinary);
 					final int mergeStrategyKey = buf.getInt();
 					if (mergeStrategy != null) {
 						childMergeStrategies.put(
@@ -433,10 +432,5 @@ public class RootMergeStrategy<T extends Persistable> implements
 					dataAdapter);
 		}
 		return null;
-	}
-
-	@Override
-	public RootMergeStrategy<T> getPersistable() {
-		return new RootMergeStrategy<T>();
 	}
 }

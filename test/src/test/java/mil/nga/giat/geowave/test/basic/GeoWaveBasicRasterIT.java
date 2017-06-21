@@ -745,7 +745,7 @@ public class GeoWaveBasicRasterIT
 			SimpleAbstractMergeStrategy<Persistable>
 	{
 
-		protected SummingMergeStrategy() {
+		public SummingMergeStrategy() {
 			super();
 		}
 
@@ -758,12 +758,6 @@ public class GeoWaveBasicRasterIT
 				final double nextSample ) {
 			return thisSample + nextSample;
 		}
-
-		@Override
-		public SummingMergeStrategy getPersistable() {
-			return new SummingMergeStrategy();
-		}
-
 	}
 
 	/**
@@ -774,7 +768,7 @@ public class GeoWaveBasicRasterIT
 			RasterTileMergeStrategy<MergeCounter>
 	{
 
-		protected SumAndAveragingMergeStrategy() {
+		public SumAndAveragingMergeStrategy() {
 			super();
 		}
 
@@ -849,11 +843,6 @@ public class GeoWaveBasicRasterIT
 		@Override
 		public void fromBinary(
 				final byte[] bytes ) {}
-
-		@Override
-		public SumAndAveragingMergeStrategy getPersistable() {
-			return new SumAndAveragingMergeStrategy();
-		}
 	}
 
 	public static class MergeCounter implements
@@ -861,7 +850,7 @@ public class GeoWaveBasicRasterIT
 	{
 		private int mergeCounter = 0;
 
-		protected MergeCounter() {}
+		public MergeCounter() {}
 
 		protected MergeCounter(
 				final int mergeCounter ) {
@@ -884,11 +873,6 @@ public class GeoWaveBasicRasterIT
 				final byte[] bytes ) {
 			final ByteBuffer buf = ByteBuffer.wrap(bytes);
 			mergeCounter = buf.getInt();
-		}
-
-		@Override
-		public MergeCounter getPersistable() {
-			return new MergeCounter();
 		}
 	}
 }

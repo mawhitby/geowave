@@ -507,14 +507,12 @@ public class TieredSFCIndexStrategy implements
 		for (int i = 0; i < numSfcs; i++) {
 			final byte[] sfc = new byte[buf.getInt()];
 			buf.get(sfc);
-			orderedSfcs[i] = (SpaceFillingCurve) PersistenceUtils.fromBinary(
-					sfc);
+			orderedSfcs[i] = (SpaceFillingCurve) PersistenceUtils.fromBinary(sfc);
 		}
 		for (int i = 0; i < numDimensions; i++) {
 			final byte[] dim = new byte[buf.getInt()];
 			buf.get(dim);
-			baseDefinitions[i] = (NumericDimensionDefinition) PersistenceUtils.fromBinary(
-					dim);
+			baseDefinitions[i] = (NumericDimensionDefinition) PersistenceUtils.fromBinary(dim);
 		}
 		final Builder<Integer, Byte> bimapBuilder = ImmutableBiMap.builder();
 		for (int i = 0; i < mappingSize; i++) {

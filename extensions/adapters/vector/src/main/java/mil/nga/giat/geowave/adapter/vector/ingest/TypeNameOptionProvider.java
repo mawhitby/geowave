@@ -62,9 +62,4 @@ public class TypeNameOptionProvider implements
 			typename = null;
 		}
 	}
-
-	@Override
-	public TypeNameOptionProvider getPersistable() {
-		return new TypeNameOptionProvider();
-	}
 }

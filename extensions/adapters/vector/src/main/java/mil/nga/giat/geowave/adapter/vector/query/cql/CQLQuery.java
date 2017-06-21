@@ -67,7 +67,7 @@ public class CQLQuery implements
 	private CQLQueryFilter filter;
 	private Filter cqlFilter;
 
-	protected CQLQuery() {}
+	public CQLQuery() {}
 
 	public static Query createOptimalQuery(
 			final String cql,
@@ -354,9 +354,7 @@ public class CQLQuery implements
 			final byte[] baseQueryBytes = new byte[baseQueryBytesLength];
 
 			try {
-				baseQuery = PersistenceUtils.fromBinary(
-						baseQueryBytes,
-						DistributableQuery.class);
+				baseQuery = (Query) PersistenceUtils.fromBinary(baseQueryBytes);
 			}
 			catch (final Exception e) {
 				throw new IllegalArgumentException(
@@ -418,10 +416,5 @@ public class CQLQuery implements
 			}
 		}
 		return false;
-	}
-
-	@Override
-	public CQLQuery getPersistable() {
-		return new CQLQuery();
 	}
 }

@@ -24,9 +24,7 @@ public class RasterTileReader implements
 		// the class name is not prefaced in the payload, we are assuming it is
 		// a raster tile implementation and instantiating it directly
 
-		final RasterTile retVal = PersistenceUtils.classFactory(
-				RasterTile.class.getName(),
-				RasterTile.class);
+		final RasterTile retVal = new RasterTile();
 		if (retVal != null) {
 			retVal.fromBinary(fieldData);
 		}

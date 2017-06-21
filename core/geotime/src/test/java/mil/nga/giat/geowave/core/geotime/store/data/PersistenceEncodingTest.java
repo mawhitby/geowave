@@ -359,11 +359,6 @@ public class PersistenceEncodingTest
 				final byte[] bytes ) {
 
 		}
-
-		@Override
-		public Persistable getPersistable() {
-			return null;
-		}
 	};
 
 	static {
@@ -376,7 +371,7 @@ public class PersistenceEncodingTest
 		NATIVE_FIELD_RANGE_HANDLER_LIST.add(ID_FIELD_HANDLER);
 	}
 
-	private static class GeoObjDataAdapter extends
+	public static class GeoObjDataAdapter extends
 			AbstractDataAdapter<GeoObj>
 	{
 		public GeoObjDataAdapter() {
@@ -542,12 +537,6 @@ public class PersistenceEncodingTest
 			}
 			return null;
 		}
-
-		@Override
-		public GeoObjDataAdapter getPersistable() {
-			return new GeoObjDataAdapter();
-		}
-
 	}
 
 	private static class GeoObj
@@ -571,7 +560,7 @@ public class PersistenceEncodingTest
 
 	}
 
-	private static class TimeFieldHandler implements
+	public static class TimeFieldHandler implements
 			PersistentIndexFieldHandler<GeoObj, CommonIndexValue, Object>,
 			DimensionMatchingIndexFieldHandler<GeoObj, CommonIndexValue, Object>
 	{
@@ -626,14 +615,9 @@ public class PersistenceEncodingTest
 				final byte[] bytes ) {
 
 		}
-
-		@Override
-		public TimeFieldHandler getPersistable() {
-			return new TimeFieldHandler();
-		}
 	}
 
-	private static class TimeRangeFieldHandler implements
+	public static class TimeRangeFieldHandler implements
 			PersistentIndexFieldHandler<GeoObj, CommonIndexValue, Object>,
 			DimensionMatchingIndexFieldHandler<GeoObj, CommonIndexValue, Object>
 	{
@@ -689,11 +673,6 @@ public class PersistenceEncodingTest
 		public void fromBinary(
 				final byte[] bytes ) {
 
-		}
-
-		@Override
-		public TimeRangeFieldHandler getPersistable() {
-			return new TimeRangeFieldHandler();
 		}
 	}
 }

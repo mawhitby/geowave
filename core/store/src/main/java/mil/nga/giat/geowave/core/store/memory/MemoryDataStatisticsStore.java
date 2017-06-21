@@ -81,8 +81,7 @@ public class MemoryDataStatisticsStore implements
 					statistics);
 		}
 		else {
-			existingStats = (DataStatistics<?>) PersistenceUtils.fromBinary(
-					PersistenceUtils.toBinary(existingStats));
+			existingStats = (DataStatistics<?>) PersistenceUtils.fromBinary(PersistenceUtils.toBinary(existingStats));
 			existingStats.merge(statistics);
 			statsMap.put(
 					key,

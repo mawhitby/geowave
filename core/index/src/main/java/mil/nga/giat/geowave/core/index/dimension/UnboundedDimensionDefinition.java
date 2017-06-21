@@ -114,8 +114,7 @@ public class UnboundedDimensionDefinition extends
 	@Override
 	public void fromBinary(
 			final byte[] bytes ) {
-		binningStrategy = (BinningStrategy) PersistenceUtils.fromBinary(
-				bytes);
+		binningStrategy = (BinningStrategy) PersistenceUtils.fromBinary(bytes);
 		min = binningStrategy.getBinMin();
 		max = binningStrategy.getBinMax();
 	}

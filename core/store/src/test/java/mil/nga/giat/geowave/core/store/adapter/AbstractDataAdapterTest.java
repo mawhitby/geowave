@@ -87,8 +87,8 @@ public class AbstractDataAdapterTest
 				indexFieldHandlers,
 				nativeFieldHandlers);
 
-		final MockAbstractDataAdapter obj = (MockAbstractDataAdapter) PersistenceUtils.fromBinary(
-				PersistenceUtils.toBinary(mockAbstractDataAdapter));
+		final MockAbstractDataAdapter obj = (MockAbstractDataAdapter) PersistenceUtils.fromBinary(PersistenceUtils
+				.toBinary(mockAbstractDataAdapter));
 
 		// TODO is there another test?
 		Assert.assertNotNull(obj);

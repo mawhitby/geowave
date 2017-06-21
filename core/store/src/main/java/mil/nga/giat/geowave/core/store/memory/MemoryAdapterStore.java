@@ -107,8 +107,7 @@ public class MemoryAdapterStore implements
 			final byte[] data = (byte[]) in.readObject();
 			adapterMap.put(
 					id,
-					(DataAdapter<?>) PersistenceUtils.fromBinary(
-							data));
+					(DataAdapter<?>) PersistenceUtils.fromBinary(data));
 		}
 	}
 }

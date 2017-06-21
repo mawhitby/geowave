@@ -343,15 +343,13 @@ public class XZHierarchicalIndexStrategy implements
 		for (int i = 0; i < numDimensions; i++) {
 			final byte[] dim = new byte[buf.getInt()];
 			buf.get(dim);
-			baseDefinitions[i] = (NumericDimensionDefinition) PersistenceUtils.fromBinary(
-					dim);
+			baseDefinitions[i] = (NumericDimensionDefinition) PersistenceUtils.fromBinary(dim);
 		}
 
 		final int rasterStrategySize = buf.getInt();
 		byte[] rasterStrategyBinary = new byte[rasterStrategySize];
 		buf.get(rasterStrategyBinary);
-		rasterStrategy = (TieredSFCIndexStrategy) PersistenceUtils.fromBinary(
-				rasterStrategyBinary);
+		rasterStrategy = (TieredSFCIndexStrategy) PersistenceUtils.fromBinary(rasterStrategyBinary);
 
 		final int bitsPerDimensionLength = buf.getInt();
 		maxBitsPerDimension = new int[bitsPerDimensionLength];
@@ -466,7 +464,7 @@ public class XZHierarchicalIndexStrategy implements
 		return metaData;
 	}
 
-	private static class XZHierarchicalIndexMetaData implements
+	public static class XZHierarchicalIndexMetaData implements
 			IndexMetaData
 	{
 

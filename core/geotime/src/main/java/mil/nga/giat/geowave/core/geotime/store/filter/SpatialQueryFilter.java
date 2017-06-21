@@ -174,7 +174,7 @@ public class SpatialQueryFilter extends
 
 	private Set<ByteArrayId> geometryFieldIds;
 
-	protected SpatialQueryFilter() {
+	public SpatialQueryFilter() {
 		super();
 	}
 
@@ -451,10 +451,5 @@ public class SpatialQueryFilter extends
 			}
 			return true;
 		}
-	}
-
-	@Override
-	public SpatialQueryFilter getPersistable() {
-		return new SpatialQueryFilter();
 	}
 }

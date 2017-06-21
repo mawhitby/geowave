@@ -91,12 +91,10 @@ public class PrimaryIndex implements
 		final byte[] indexStrategyBinary = new byte[indexStrategyLength];
 		buf.get(indexStrategyBinary);
 
-		indexStrategy = (NumericIndexStrategy) PersistenceUtils.fromBinary(
-				indexStrategyBinary);
+		indexStrategy = (NumericIndexStrategy) PersistenceUtils.fromBinary(indexStrategyBinary);
 
 		final byte[] indexModelBinary = new byte[bytes.length - indexStrategyLength - 4];
 		buf.get(indexModelBinary);
-		indexModel = (CommonIndexModel) PersistenceUtils.fromBinary(
-				indexModelBinary);
+		indexModel = (CommonIndexModel) PersistenceUtils.fromBinary(indexModelBinary);
 	}
 }

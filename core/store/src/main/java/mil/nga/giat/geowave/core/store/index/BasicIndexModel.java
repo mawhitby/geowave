@@ -144,8 +144,7 @@ public class BasicIndexModel implements
 		for (int i = 0; i < numDimensions; i++) {
 			final byte[] dim = new byte[buf.getInt()];
 			buf.get(dim);
-			dimensions[i] = (NumericDimensionField<?>) PersistenceUtils.fromBinary(
-					dim);
+			dimensions[i] = (NumericDimensionField<?>) PersistenceUtils.fromBinary(dim);
 		}
 		init(dimensions);
 	}

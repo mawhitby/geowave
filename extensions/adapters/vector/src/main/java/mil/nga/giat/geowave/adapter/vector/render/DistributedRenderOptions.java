@@ -84,7 +84,7 @@ public class DistributedRenderOptions implements
 
 	private Style style;
 
-	protected DistributedRenderOptions() {}
+	public DistributedRenderOptions() {}
 
 	public DistributedRenderOptions(
 			final WMS wms,
@@ -729,10 +729,5 @@ public class DistributedRenderOptions implements
 		else {
 			style = null;
 		}
-	}
-
-	@Override
-	public DistributedRenderOptions getPersistable() {
-		return new DistributedRenderOptions();
 	}
 }

@@ -656,7 +656,7 @@ public class AccumuloOptionsTest
 		}
 	}
 
-	private static class TestGeometryAdapter extends
+	protected static class TestGeometryAdapter extends
 			AbstractDataAdapter<TestGeometry>
 	{
 		private static final ByteArrayId GEOM = new ByteArrayId(
@@ -699,11 +699,6 @@ public class AccumuloOptionsTest
 			public void fromBinary(
 					final byte[] bytes ) {
 
-			}
-
-			@Override
-			public Persistable getPersistable() {
-				return null;
 			}
 		};
 		private static final NativeFieldHandler<TestGeometry, Object> ID_FIELD_HANDLER = new NativeFieldHandler<TestGeometry, Object>() {
@@ -851,11 +846,6 @@ public class AccumuloOptionsTest
 			}
 			return null;
 		}
-
-		@Override
-		public TestGeometryAdapter getPersistable() {
-			return new TestGeometryAdapter();
-		}
 	}
 
 	public static class AnotherAdapter extends
@@ -865,11 +855,6 @@ public class AccumuloOptionsTest
 		public ByteArrayId getAdapterId() {
 			return new ByteArrayId(
 					"test1");
-		}
-
-		@Override
-		public AnotherAdapter getPersistable() {
-			return new AnotherAdapter();
 		}
 	}
 }

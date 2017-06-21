@@ -56,9 +56,7 @@ public class SecondaryIndexQueryFilterIterator extends
 		if (options.containsKey(FILTERS)) {
 			final String filterStr = options.get(FILTERS);
 			final byte[] filterBytes = ByteArrayUtils.byteArrayFromString(filterStr);
-			filter = PersistenceUtils.fromBinary(
-					filterBytes,
-					DistributableQueryFilter.class);
+			filter = (DistributableQueryFilter) PersistenceUtils.fromBinary(filterBytes);
 		}
 		primaryIndexId = options.get(PRIMARY_INDEX_ID);
 	}

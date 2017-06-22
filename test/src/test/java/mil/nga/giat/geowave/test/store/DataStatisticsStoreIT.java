@@ -366,8 +366,8 @@ public class DataStatisticsStoreIT
 		final Cell cell = r.listCells().get(
 				0);
 		@SuppressWarnings("unchecked")
-		final CountDataStatistics<String> stat = (CountDataStatistics<String>) PersistenceUtils.fromBinary(
-				CellUtil.cloneValue(cell));
+		final CountDataStatistics<String> stat = (CountDataStatistics<String>) PersistenceUtils.fromBinary(CellUtil
+				.cloneValue(cell));
 
 		Assert.assertEquals(
 				9,
